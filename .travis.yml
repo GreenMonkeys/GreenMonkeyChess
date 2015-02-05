@@ -8,7 +8,3 @@ rvm:
   - rbx
 # uncomment this line if your project needs to run something other than `rake`:
 # script: bundle exec rspec spec
-
-# inside a repository with .travis.yml
-travis-lint
-
