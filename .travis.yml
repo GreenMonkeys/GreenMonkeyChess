@@ -1,11 +1,12 @@
 language: ruby
 rvm:
   - 2.0.0-p353
-  - rbx
 
 before_install:
   - gem update --system
   - gem --version
+  - rake db:create:all
+  - rake db:migrate
 
 before_script:
  - bundle exec rake assets:precompile
