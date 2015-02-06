@@ -32,7 +32,6 @@ gem 'devise'
 
 gem 'factory_girl_rails', '~> 4.0'
 
-gem 'rake', '~> 10.4.2', group: :test
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
