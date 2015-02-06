@@ -7,7 +7,6 @@ before_install:
   - gem --version
   - psql -c 'create database greenmonkeychess_test;' -U postgres 
 
-
 before_script:
  - bundle exec rake assets:precompile
 # uncomment this line if your project needs to run something other than `rake`:
