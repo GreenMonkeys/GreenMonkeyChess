@@ -1,1 +1,3 @@
+{<img src="https://travis-ci.org/GreenMonkeys/GreenMonkeyChess.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/GreenMonkeys/GreenMonkeyChess]
+
 https://www.youtube.com/watch?v=ykfHpb4BKqw
