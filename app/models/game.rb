@@ -2,17 +2,17 @@ class Game < ActiveRecord::Base
 	has_many :users
 	has_many :pieces
 
-  #NOTE: the coordinates are [y][x] and not the usual [x][y]. So [0][0] is equivalent to row 1 column 1 (a1).
+  
 
   def populate_board
-    @board = @board = [[nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil],
-                       [nil,nil,nil,nil,nil,nil,nil,nil]]
+    @board [[nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil,nil]]
   #white pieces   
     @board[0][0] = Rook.new(:color => :white, :name => :rook, :position => [0,0])
     @board[0][1] = Knight.new(:color => :white, :name => :knight, :position => [0,1])
@@ -48,6 +48,6 @@ class Game < ActiveRecord::Base
      # @board[5][6] = Pawn.new(:black, :pawn, @board[6,5])
      # @board[6][6] = Pawn.new(:black, :pawn, @board[6,6])
      # @board[7][6] = Pawn.new(:black, :pawn, @board[6,7])
-    return @board
+    @board
   end
 end
