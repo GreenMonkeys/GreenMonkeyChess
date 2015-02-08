@@ -48,6 +48,6 @@ class Game < ActiveRecord::Base
      # @board[5][6] = Pawn.new(:black, :pawn, @board[6,5])
      # @board[6][6] = Pawn.new(:black, :pawn, @board[6,6])
      # @board[7][6] = Pawn.new(:black, :pawn, @board[6,7])
-    return @board
+     @board
   end
 end
