@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(version: 20150207172321) do
   add_index "games", ["game_id"], name: "index_games_on_game_id", using: :btree
   add_index "games", ["user_id"], name: "index_games_on_user_id", using: :btree
 
+  create_table "games_users", force: true do |t|
+    t.integer "games_id"
+    t.integer "users_id"
+  end
+
+  add_index "games_users", ["games_id"], name: "index_games_users_on_games_id", using: :btree
+  add_index "games_users", ["users_id"], name: "index_games_users_on_users_id", using: :btree
+
   create_table "pieces", force: true do |t|
     t.string   "name"
     t.string   "color"
