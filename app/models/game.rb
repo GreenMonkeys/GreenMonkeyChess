@@ -6,50 +6,21 @@ class Game < ActiveRecord::Base
 
   def board
     return @board if @board.present?
-    @board = [[nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil],
-              [nil, nil, nil, nil,nil,nil,nil,nil]]
+    @board =  [[nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil],
+               [nil, nil, nil, nil,nil,nil,nil,nil]]
 
   
-  @board[0][0] = Rook.find_by x_axis: 0, y_axis: 0 
-  @board[0][1] = Knight.find_by x_axis: 1, y_axis: 0
-  @board[0][2] = Bishop.find_by x_axis: 2, y_axis: 0
-  @board[0][3] = Queen.find_by x_axis: 3, y_axis: 0
-  @board[0][4] = King.find_by x_axis: 4, y_axis: 0
-  @board[0][5] = Bishop.find_by x_axis: 5, y_axis: 0
-  @board[0][6] = Knight.find_by x_axis: 6, y_axis: 0
-  @board[0][7] = Rook.find_by x_axis: 7, y_axis: 0
-  @board[1][0] = Pawn.find_by x_axis: 0, y_axis: 1
-  @board[1][1] = Pawn.find_by x_axis: 1, y_axis: 1
-  @board[1][2] = Pawn.find_by x_axis: 2, y_axis: 1
-  @board[1][3] = Pawn.find_by x_axis: 3, y_axis: 1
-  @board[1][4] = Pawn.find_by x_axis: 4, y_axis: 1
-  @board[1][5] = Pawn.find_by x_axis: 5, y_axis: 1
-  @board[1][6] = Pawn.find_by x_axis: 6, y_axis: 1
-  @board[1][7] = Pawn.find_by x_axis: 7, y_axis: 1
- 
-
-  @board[7][0] = Rook.find_by x_axis: 0, y_axis: 7
-  @board[7][1] = Knight.find_by x_axis: 1, y_axis: 7
-  @board[7][2] = Bishop.find_by x_axis: 2, y_axis: 7
-  @board[7][3] = Queen.find_by x_axis: 3, y_axis: 7
-  @board[7][4] = King.find_by x_axis: 4, y_axis: 7
-  @board[7][5] = Bishop.find_by x_axis: 5, y_axis: 7
-  @board[7][6] = Knight.find_by x_axis: 6, y_axis: 7
-  @board[7][7] = Rook.find_by x_axis: 7, y_axis: 7
-  @board[6][0] = Pawn.find_by x_axis: 0, y_axis: 6
-  @board[6][1] = Pawn.find_by x_axis: 1, y_axis: 6
-  @board[6][2] = Pawn.find_by x_axis: 2, y_axis: 6
-  @board[6][3] = Pawn.find_by x_axis: 3, y_axis: 6
-  @board[6][4] = Pawn.find_by x_axis: 4, y_axis: 6
-  @board[6][5] = Pawn.find_by x_axis: 5, y_axis: 6
-  @board[6][6] = Pawn.find_by x_axis: 6, y_axis: 6
-  @board[6][7] = Pawn.find_by x_axis: 7, y_axis: 6
+  self.pieces.each do |p|
+  x = p.x_axis
+  y = p.y_axis
+    @board[y][x] = p
+  end
   return @board
 
   end

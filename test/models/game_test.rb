@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
- test "Board is populated" do
+ test "Initial board position" do
    
     game = Game.create(:user_id => 1)
+    
        
     expected = [["00", "10", "20", "30", "40", "50", "60", "70"],
                 ["01", "11", "21", "31", "41", "51", "61", "71"],
