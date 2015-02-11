@@ -4,11 +4,10 @@ class Piece < ActiveRecord::Base
 
 
 	#Allows an easier navigation between model. E.g.  Rook.find(56) => <Rook id: 56, name: :rook, color: :white, image: nil, position: 00, game_id: 20...>
-	scope :rook, -> { where(type: 'Rook') } 
-	scope :knight, -> { where(type: 'Knight') } 
-	scope :bishop, -> { where(type: 'Bishop') }
-	scope :king, -> {where(type: 'King') }
-	scope :queen, -> {where(type: 'Queen') }
-	scope :pawn, -> {where(type: 'Pawn') }
-
+  scope :rooks, -> { where(type: 'Rook') } 
+  scope :knights, -> { where(type: 'Knight') } 
+  scope :bishops, -> { where(type: 'Bishop') }
+  scope :kings, -> {where(type: 'King') }
+  scope :queens, -> {where(type: 'Queen') }
+  scope :pawns, -> {where(type: 'Pawn') }
 end
