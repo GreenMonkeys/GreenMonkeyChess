@@ -86,7 +86,7 @@ class Game < ActiveRecord::Base
       (begin_x..end_x).each do |x|
         next if position_1 == [y,x] || diag_move && (y - begin_y).abs != (x - begin_x).abs
         # go to next x if loop is at current position or is not along diagonal
-        return true unless Piece.all.where(y_axis: y, x_axis: x).empty?
+        return true unless Piece.where(y_axis: y, x_axis: x).empty?
       end
     end
     return false
