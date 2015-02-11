@@ -33,7 +33,7 @@ class GameTest < ActiveSupport::TestCase
     assert_equal expected, actual
   end
 
-  test "proposed move is obstructed" do
+  test "proposed diagonal move is obstructed" do
     game = Game.create(:user_id => 1)
     game.populate_board
 
@@ -43,7 +43,17 @@ class GameTest < ActiveSupport::TestCase
     assert test
   end
 
-  test "proposed move is not obstructed" do
+  test "proposed diagonal move is not obstructed" do
+    game = Game.create(:user_id => 1)
+    game.rooks.create!(:x_axis => 4, :y_axis => 4)
+
+    # move Pawn with the very first move of a game
+    test = game.is_obstructed([3,3], [3,5])
+
+    assert_not test
+  end
+
+  test "proposed non-diagonal move is not obstructed" do
     game = Game.create(:user_id => 1)
     game.populate_board
 
