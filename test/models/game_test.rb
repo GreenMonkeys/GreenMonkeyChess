@@ -32,4 +32,25 @@ class GameTest < ActiveSupport::TestCase
 
     assert_equal expected, actual
   end
+
+  test "proposed move is obstructed" do
+    game = Game.create(:user_id => 1)
+    game.populate_board
+
+    # move Queen with the very first move of a game 
+    test = game.is_obstructed([3,0], [7,4])
+
+    assert test
+  end
+
+  test "proposed move is not obstructed" do
+    game = Game.create(:user_id => 1)
+    game.populate_board
+
+    # move Pawn with the very first move of a game
+    test = game.is_obstructed([3,1], [3,3])
+
+    assert_not test
+  end
+
 end
