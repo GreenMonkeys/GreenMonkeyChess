@@ -17,6 +17,11 @@ class GamesControllerTest < ActionController::TestCase
 		assert_response :success
 	end
 
+	test "index" do
+		FactoryGirl.create(:game)
+		get :index
+		assert_response :success
+	end
 
 
 end
