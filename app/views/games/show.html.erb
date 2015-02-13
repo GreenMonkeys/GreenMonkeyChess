@@ -1,6 +1,6 @@
 <div class = 'col-xs-10 col-xs-offset-1'>
 	<table id = 'chess'>
-		<tr class = '8'>
+		<tr class = '0'>
 			<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -10,7 +10,7 @@
 			<td class = 'g'></td>
 			<td class = 'h'></td>
 		</tr>
-		<tr class = '7'>
+		<tr class = '1'>
 			<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -20,7 +20,7 @@
 			<td class = 'g'></td>
 			<td class = 'h'></td>
 		</tr>
-		<tr class = '6'>
+		<tr class = '2'>
 				<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -30,7 +30,7 @@
 			<td class = 'g'></td>
 			<td class = 'h'></td>
 		</tr>
-		<tr class = '5'>
+		<tr class = '3'>
 			<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -50,7 +50,7 @@
 			<td class = 'g'></td>
 			<td class = 'h'></td>
 		</tr>
-		<tr class = '3'>
+		<tr class = '5'>
 			<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -60,7 +60,7 @@
 			<td class = 'g'></td>
 			<td class = 'h'></td>
 		</tr>
-		<tr class = '2'>
+		<tr class = '6'>
 			<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -70,7 +70,7 @@
 			<td class = 'g'></td>
 			<td class = 'h'></td>
 		</tr>
-		<tr class = '1'>
+		<tr class = '7'>
 			<td class = 'a'></td>
 			<td class = 'b'></td>
 			<td class = 'c'></td>
@@ -120,7 +120,79 @@
 <script>
 	var chessTable = $('#chess')[0];
 	var wQueen = $('#wQueen');
-	chessTable.rows[0].cells[0].innerHTML = wQueen;
+	var wKing = $('#wKing');
+	var wRook1 = $('#wRook1');
+	var wRook2 = $('#wRook2');
+	var wBishop1 = $('#wBishop1');
+	var wBishop2 = $('#wBishop2');
+	var wKnight1 = $('#wKnight1');
+	var wKnight2 = $('#wKnight2');
+	var wPawn1 = $('#wPawn1');
+	var wPawn2 = $('#wPawn2');
+	var wPawn3 = $('#wPawn3');
+	var wPawn4 = $('#wPawn4');
+	var wPawn5 = $('#wPawn5');
+	var wPawn6 = $('#wPawn6');
+	var wPawn7 = $('#wPawn7');
+	var wPawn8 = $('#wPawn8');
+
+	var bQueen = $('#bQueen');
+	var bKing = $('#bKing');
+	var bRook1 = $('#bRook1');
+	var bRook2 = $('#bRook2');
+	var bBishop1 = $('#bBishop1');
+	var bBishop2 = $('#bBishop2');
+	var bKnight1 = $('#bKnight1');
+	var bKnight2 = $('#bKnight2');
+	var bPawn1 = $('#bPawn1');
+	var bPawn2 = $('#bPawn2');
+	var bPawn3 = $('#bPawn3');
+	var bPawn4 = $('#bPawn4');
+	var bPawn5 = $('#bPawn5');
+	var bPawn6 = $('#bPawn6');
+	var bPawn7 = $('#bPawn7');
+	var bPawn8 = $('#bPawn8');
+
+
+	chessTable.rows[0].cells[0].innerHTML = wRook1;
+	chessTable.rows[0].cells[1].innerHTML = wKnight1;
+	chessTable.rows[0].cells[2].innerHTML = wBishop1;
+	chessTable.rows[0].cells[3].innerHTML = wQueen;
+	chessTable.rows[0].cells[4].innerHTML = wKing;
+	chessTable.rows[0].cells[5].innerHTML = wBishop2;
+	chessTable.rows[0].cells[6].innerHTML = wKnight2;
+	chessTable.rows[0].cells[7].innerHTML = wRook2;
+	chessTable.rows[1].cells[0].innerHTML = wPawn1;
+	chessTable.rows[1].cells[1].innerHTML = wPawn2;
+	chessTable.rows[1].cells[2].innerHTML = wPawn3;
+	chessTable.rows[1].cells[3].innerHTML = wPawn4;
+	chessTable.rows[1].cells[4].innerHTML = wPawn5;
+	chessTable.rows[1].cells[5].innerHTML = wPawn6;
+	chessTable.rows[1].cells[6].innerHTML = wPawn7;
+	chessTable.rows[1].cells[7].innerHTML = wPawn8;
+
+	chessTable.rows[7].cells[0].innerHTML = bRook1;
+	chessTable.rows[7].cells[1].innerHTML = bKnight1;
+	chessTable.rows[7].cells[2].innerHTML = bBishop1;
+	chessTable.rows[7].cells[3].innerHTML = bQueen;
+	chessTable.rows[7].cells[4].innerHTML = bKing;
+	chessTable.rows[7].cells[5].innerHTML = bBishop2;
+	chessTable.rows[7].cells[6].innerHTML = bKnight2;
+	chessTable.rows[7].cells[7].innerHTML = bRook2;
+	chessTable.rows[6].cells[0].innerHTML = bPawn1;
+	chessTable.rows[6].cells[1].innerHTML = bPawn2;
+	chessTable.rows[6].cells[2].innerHTML = bPawn3;
+	chessTable.rows[6].cells[3].innerHTML = bPawn4;
+	chessTable.rows[6].cells[4].innerHTML = bPawn5;
+	chessTable.rows[6].cells[5].innerHTML = bPawn6;
+	chessTable.rows[6].cells[6].innerHTML = bPawn7;
+	chessTable.rows[6].cells[7].innerHTML = bPawn8;
+
+ // potential function to populate the board...	
+ // function popBoard (color, name, x, y) {
+ // 	chessTable.rows[0].cells[0].innerHTML = wQueen;
+ // }
+
 
 
 </script>
