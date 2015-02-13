@@ -83,75 +83,44 @@
 	</table>
 </div>
 
-<img src="#" id='wQueen' />
-<img src="#" id='wKing' />
-<img src="#" id='wRook1' />
-<img src="#" id='wRook2' />
-<img src="#" id='wBishop1' />
-<img src="#" id='wBishop2' />
-<img src="#" id='wKnight1' />
-<img src="#" id='wKnight2' />
-<img src="#" id='wPawn1' />
-<img src="#" id='wPawn2' />
-<img src="#" id='wPawn3' />
-<img src="#" id='wPawn4' />
-<img src="#" id='wPawn5' />
-<img src="#" id='wPawn6' />
-<img src="#" id='wPawn7' />
-<img src="#" id='wPawn8' />
-
-<img src="#" id='bQueen' />
-<img src="#" id='bKing' />
-<img src="#" id='bRook1' />
-<img src="#" id='bRook2' />
-<img src="#" id='bBishop1' />
-<img src="#" id='bBishop2' />
-<img src="#" id='bKnight1' />
-<img src="#" id='bKnight2' />
-<img src="#" id='bPawn1' />
-<img src="#" id='bPawn2' />
-<img src="#" id='bPawn3' />
-<img src="#" id='bPawn4' />
-<img src="#" id='bPawn5' />
-<img src="#" id='bPawn6' />
-<img src="#" id='bPawn7' />
-<img src="#" id='bPawn8' />
 
 <script>
-	var chessTable = $('#chess')[0];
-	var wQueen = $('#wQueen');
-	var wKing = $('#wKing');
-	var wRook1 = $('#wRook1');
-	var wRook2 = $('#wRook2');
-	var wBishop1 = $('#wBishop1');
-	var wBishop2 = $('#wBishop2');
-	var wKnight1 = $('#wKnight1');
-	var wKnight2 = $('#wKnight2');
-	var wPawn1 = $('#wPawn1');
-	var wPawn2 = $('#wPawn2');
-	var wPawn3 = $('#wPawn3');
-	var wPawn4 = $('#wPawn4');
-	var wPawn5 = $('#wPawn5');
-	var wPawn6 = $('#wPawn6');
-	var wPawn7 = $('#wPawn7');
-	var wPawn8 = $('#wPawn8');
+	var wPawn9 = $('#wPawn9');
 
-	var bQueen = $('#bQueen');
-	var bKing = $('#bKing');
-	var bRook1 = $('#bRook1');
-	var bRook2 = $('#bRook2');
-	var bBishop1 = $('#bBishop1');
-	var bBishop2 = $('#bBishop2');
-	var bKnight1 = $('#bKnight1');
-	var bKnight2 = $('#bKnight2');
-	var bPawn1 = $('#bPawn1');
-	var bPawn2 = $('#bPawn2');
-	var bPawn3 = $('#bPawn3');
-	var bPawn4 = $('#bPawn4');
-	var bPawn5 = $('#bPawn5');
-	var bPawn6 = $('#bPawn6');
-	var bPawn7 = $('#bPawn7');
-	var bPawn8 = $('#bPawn8');
+	var chessTable = $('#chess')[0];
+	var wQueen = '<img src="assets/white-queen.gif" id="wQueen" draggable ="true" />';
+	var wKing = '<img src="assets/white-king.gif" id="wKing" draggable ="true" />';
+	var wRook1 = '<img src="assets/white-rook.gif" id="wRook1" draggable ="true" />';
+	var wRook2 = '<img src="assets/white-rook.gif" id="wRook2" draggable ="true" />';
+	var wBishop1 = '<img src="assets/white-bishop.gif" id="wBishop1" draggable ="true" />';
+	var wBishop2 = '<img src="assets/white-bishop.gif" id="wBishop2" draggable ="true" />';
+	var wKnight1 = '<img src="assets/white-knight.gif" id="wKnight1" draggable ="true" />';
+	var wKnight2 = '<img src="assets/white-knight.gif" id="wKnight2" draggable ="true" />';
+	var wPawn1 = '<img src="assets/white-pawn.gif" id="wPawn1" draggable ="true" />';
+	var wPawn2 = '<img src="assets/white-pawn.gif" id="wPawn2" draggable ="true" />';
+	var wPawn3 = '<img src="assets/white-pawn.gif" id="wPawn3" draggable ="true" />';
+	var wPawn4 = '<img src="assets/white-pawn.gif" id="wPawn4" draggable ="true" />';
+	var wPawn5 = '<img src="assets/white-pawn.gif" id="wPawn5" draggable ="true" />';
+	var wPawn6 = '<img src="assets/white-pawn.gif" id="wPawn6" draggable ="true" />';
+	var wPawn7 = '<img src="assets/white-pawn.gif" id="wPawn7" draggable ="true" />';
+	var wPawn8 = '<img src="assets/white-pawn.gif" id="wPawn8" draggable ="true" />';
+
+	var bQueen = '<img src="assets/black-queen.gif" id="bQueen" draggable ="true" />';
+	var bKing = '<img src="assets/black-king.gif" id="bKing" draggable ="true" />';
+	var bRook1 = '<img src="assets/black-rook.gif" id="bRook1" draggable ="true" />';
+	var bRook2 = '<img src="assets/black-rook.gif" id="bRook2" draggable ="true" />';
+	var bBishop1 = '<img src="assets/black-bishop.gif" id="bBishop1" draggable ="true" />';
+	var bBishop2 = '<img src="assets/black-bishop.gif" id="bBishop2" draggable ="true" />';
+	var bKnight1 = '<img src="assets/black-knight.gif" id="bKnight1" draggable ="true" />';
+	var bKnight2 = '<img src="assets/black-knight.gif" id="bKnight2" draggable ="true" />';
+	var bPawn1 = '<img src="assets/black-pawn.gif" id="bPawn1" draggable ="true" />';
+	var bPawn2 = '<img src="assets/black-pawn.gif" id="bPawn2" draggable ="true" />';
+	var bPawn3 = '<img src="assets/black-pawn.gif" id="bPawn3" draggable ="true" />';
+	var bPawn4 = '<img src="assets/black-pawn.gif" id="bPawn4" draggable ="true" />';
+	var bPawn5 = '<img src="assets/black-pawn.gif" id="bPawn5" draggable ="true" />';
+	var bPawn6 = '<img src="assets/black-pawn.gif" id="bPawn6" draggable ="true" />';
+	var bPawn7 = '<img src="assets/black-pawn.gif" id="bPawn7" draggable ="true" />';
+	var bPawn8 = '<img src="assets/black-pawn.gif" id="bPawn8" draggable ="true" />';
 
 
 	chessTable.rows[0].cells[0].innerHTML = wRook1;
@@ -189,10 +158,11 @@
 	chessTable.rows[6].cells[7].innerHTML = bPawn8;
 
  // potential function to populate the board...	
- // function popBoard (color, name, x, y) {
- // 	chessTable.rows[0].cells[0].innerHTML = wQueen;
- // }
-
+ $(document).ready(function popBoard () {
+ 	<% @pieces.each do |p| %>
+ 	chessTable.rows['<%= p.y-axis %>'].cells['<%= p.x-axis %>'].innerHTML = '<%= p.color %>' + '<%= p.name %>';
+ 	<% end %>
+ });
 
 
 </script>
