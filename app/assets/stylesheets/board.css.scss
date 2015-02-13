@@ -1,0 +1,41 @@
+body {
+	font-family: "Helvetica Nueue", Helvetica, sans-serif;
+}
+
+
+table {
+	margin-right: auto;
+	margin-left: auto;
+	border-spacing: 0;
+	text-align: center;
+}
+
+table, td {
+	border: 1px solid #000000;
+}
+
+table#chess tr {
+	height: 75px;
+}
+
+table#chess td {
+	width: 75px;
+}
+
+tr:nth-child(even) td:nth-child(even) {
+	background-color: white;
+}
+
+tr:nth-child(odd) td:nth-child(odd) {
+	background-color: white;
+}
+
+tr:nth-child(even) td:nth-child(odd) {
+	background-color: black;
+	color: white;
+}
+
+tr:nth-child(odd) td:nth-child(even) {
+	background-color: black;
+	color: white;
+}
