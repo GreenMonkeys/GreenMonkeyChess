@@ -1,6 +1,8 @@
 class GamesController < ApplicationController
 
 	def show
-		@pieces = Piece.all
+		@game = Game.find(params[:id])
+		@board = @game.populate_board
 	end
+
 end

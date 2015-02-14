@@ -4,6 +4,21 @@ class Game < ActiveRecord::Base
   
   delegate :rooks, :knights, :bishops, :kings, :queens, to: :pieces
 
+  PIECESIMAGE = {
+   'whiteQueen' => '<img src="/assets/white-queen.gif" id="wQueen" draggable ="true" />',
+   'whiteKing' => '<img src="/assets/white-king.gif" id="wKing" draggable ="true" />',
+   'whiteRook' => '<img src="/assets/white-rook.gif" id="wRook" draggable ="true" />',
+   'whiteBishop' => '<img src="/assets/white-bishop.gif" id="wBishop" draggable ="true" />',
+   'whiteKnight' => '<img src="/assets/white-knight.gif" id="wKnight" draggable ="true" />',
+   'whitePawn' => '<img src="/assets/white-pawn.gif" id="wPawn" draggable ="true" />',
+   'blackQueen' => '<img src="/assets/black-queen.gif" id="bQueen" draggable ="true" />',
+   'blackKing' => '<img src="/assets/black-king.gif" id="bKing" draggable ="true" />',
+   'blackRook' => '<img src="/assets/black-rook.gif" id="bRook" draggable ="true" />',
+   'blackBishop' => '<img src="/assets/black-bishop.gif" id="bBishop" draggable ="true" />',
+   'blackKnight' => '<img src="/assets/black-knight.gif" id="bKnight" draggable ="true" />',
+   'blackPawn' => '<img src="/assets/black-pawn.gif" id="bPawn" draggable ="true" />'
+  }
+
   def board
     return @board if @board.present?
     @board =  [[nil, nil, nil, nil,nil,nil,nil,nil],
@@ -69,5 +84,11 @@ class Game < ActiveRecord::Base
    self.pieces << Piece.all
    @board
   end
+
+  def pieceName
+    self.color << self.name.capitalize
+  end
+
+
 
 end
