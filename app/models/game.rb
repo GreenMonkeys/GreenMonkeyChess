@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   
   delegate :rooks, :knights, :bishops, :kings, :queens, to: :pieces
 
-  PIECESIMAGE = {
+  PIECESIMG = {
    'whiteQueen' => '<img src="/assets/white-queen.gif" id="wQueen" draggable ="true" />',
    'whiteKing' => '<img src="/assets/white-king.gif" id="wKing" draggable ="true" />',
    'whiteRook' => '<img src="/assets/white-rook.gif" id="wRook" draggable ="true" />',
@@ -85,9 +85,7 @@ class Game < ActiveRecord::Base
    @board
   end
 
-  def pieceName
-    self.color << self.name.capitalize
-  end
+
 
 
 

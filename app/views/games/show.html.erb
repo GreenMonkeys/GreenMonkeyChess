@@ -1,101 +1,19 @@
 <div class = 'col-xs-10 col-xs-offset-1'>
-	
+
 	<table id = 'chess'>
-		<% @board.each_index do |y| %>
-			<tr class = '<%= y %>'>
-				<% y.each do |x| %>
-					<% if x.nil? %>
-						<td class = '<% y.index(x) %>'><%= x %></td>
-					<% else %>
-						<td class = '<% y.index(x) %>'>
-							<%= x[x.pieceName] %>
-						</td>
-					<% end %>
+		<% @board.each do |y| %>
+		<tr clas = '<%= @board.index(y) %>' >
+			<% y.each do |x| %>
+				<% if x.nil? %>
+				<td class = '<% y.index(x) %>'></td>
+				<% else %>
+				<td class = '<% y.index(x) %>'>
+					<%= image_tag x.pieceImg, :class => 'responsive' %>
+				</td>
 				<% end %>
+			<% end %>
+		</tr>
 		<% end %>
 	</table>
 
-
-	<table id = 'chess'>
-		<tr class = '0'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '1'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '2'>
-				<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '3'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '4'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '5'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '6'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-		<tr class = '7'>
-			<td class = 'a'></td>
-			<td class = 'b'></td>
-			<td class = 'c'></td>
-			<td class = 'd'></td>
-			<td class = 'e'></td>
-			<td class = 'f'></td>
-			<td class = 'g'></td>
-			<td class = 'h'></td>
-		</tr>
-	</table>
 </div>

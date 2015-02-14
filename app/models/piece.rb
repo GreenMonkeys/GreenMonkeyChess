@@ -10,4 +10,23 @@ class Piece < ActiveRecord::Base
   scope :kings, -> {where(type: 'King') }
   scope :queens, -> {where(type: 'Queen') }
   scope :pawns, -> {where(type: 'Pawn') }
+
+  PIECESIMG = {
+   'whiteQueen' => 'white-queen.gif',
+   'whiteKing' => 'white-king.gif',
+   'whiteRook' => 'white-rook.gif',
+   'whiteBishop' => 'white-bishop.gif',
+   'whiteKnight' => 'white-knight.gif',
+   'whitePawn' => 'white-pawn.gif',
+   'blackQueen' => 'black-queen.gif',
+   'blackKing' => 'black-king.gif',
+   'blackRook' => 'black-rook.gif',
+   'blackBishop' => 'black-bishop.gif',
+   'blackKnight' => 'black-knight.gif',
+   'blackPawn' => 'black-pawn.gif'
+  }
+
+   def pieceImg
+    PIECESIMG["#{self.color}" + "#{self.name.capitalize}"]
+  end
 end
