@@ -4,21 +4,6 @@ class Game < ActiveRecord::Base
   
   delegate :rooks, :knights, :bishops, :kings, :queens, to: :pieces
 
-  PIECESIMG = {
-   'whiteQueen' => '<img src="/assets/white-queen.gif" id="wQueen" draggable ="true" />',
-   'whiteKing' => '<img src="/assets/white-king.gif" id="wKing" draggable ="true" />',
-   'whiteRook' => '<img src="/assets/white-rook.gif" id="wRook" draggable ="true" />',
-   'whiteBishop' => '<img src="/assets/white-bishop.gif" id="wBishop" draggable ="true" />',
-   'whiteKnight' => '<img src="/assets/white-knight.gif" id="wKnight" draggable ="true" />',
-   'whitePawn' => '<img src="/assets/white-pawn.gif" id="wPawn" draggable ="true" />',
-   'blackQueen' => '<img src="/assets/black-queen.gif" id="bQueen" draggable ="true" />',
-   'blackKing' => '<img src="/assets/black-king.gif" id="bKing" draggable ="true" />',
-   'blackRook' => '<img src="/assets/black-rook.gif" id="bRook" draggable ="true" />',
-   'blackBishop' => '<img src="/assets/black-bishop.gif" id="bBishop" draggable ="true" />',
-   'blackKnight' => '<img src="/assets/black-knight.gif" id="bKnight" draggable ="true" />',
-   'blackPawn' => '<img src="/assets/black-pawn.gif" id="bPawn" draggable ="true" />'
-  }
-
   def board
     return @board if @board.present?
     @board =  [[nil, nil, nil, nil,nil,nil,nil,nil],
@@ -44,40 +29,40 @@ class Game < ActiveRecord::Base
     self.board
     #white pieces
    #@board[y][x] <= IMPORTANT    
-    @board[0][0] = Rook.create(:color => :white, :name => :rook, :position => "00", :x_axis => 0, :y_axis => 0)
-    @board[0][1] = Knight.create(:color => :white, :name => :knight, :position => "10", :x_axis => 1, :y_axis => 0)
-    @board[0][2] = Bishop.create(:color => :white, :name => :bishop, :position => "20", :x_axis => 2, :y_axis =>0)
-    @board[0][3] = Queen.create(:color => :white, :name => :queen, :position => "30", :x_axis => 3, :y_axis => 0)
-    @board[0][4] = King.create(:color => :white, :name => :king, :position => "40", :x_axis => 4, :y_axis => 0)
-    @board[0][5] = Bishop.create(:color => :white, :name => :bishop, :position => "50", :x_axis => 5, :y_axis => 0)
-    @board[0][6] = Knight.create(:color => :white, :name => :knight, :position => "60", :x_axis =>6, :y_axis => 0)
-    @board[0][7] = Rook.create(:color => :white, :name => :rook, :position => "70", :x_axis => 7, :y_axis => 0)
-    @board[1][0] = Pawn.create(:color => :white, :name => :pawn, :position => "01", :x_axis => 0, :y_axis => 1)
-    @board[1][1] = Pawn.create(:color => :white, :name => :pawn, :position => "11", :x_axis => 1, :y_axis => 1)
-    @board[1][2] = Pawn.create(:color => :white, :name => :pawn, :position => "21", :x_axis => 2, :y_axis => 1)
-    @board[1][3] = Pawn.create(:color => :white, :name => :pawn, :position => "31", :x_axis => 3, :y_axis => 1)
-    @board[1][4] = Pawn.create(:color => :white, :name => :pawn, :position => "41", :x_axis => 4, :y_axis => 1)
-    @board[1][5] = Pawn.create(:color => :white, :name => :pawn, :position => "51", :x_axis => 5, :y_axis => 1)
-    @board[1][6] = Pawn.create(:color => :white, :name => :pawn, :position => "61", :x_axis => 6, :y_axis => 1)
-    @board[1][7] = Pawn.create(:color => :white, :name => :pawn, :position => "71", :x_axis => 7, :y_axis => 1)
+    @board[0][0] = Rook.create(:color => :white, :name => :rook, :position => "00", :x_axis => 0, :y_axis => 0, :image => 'white-rook.gif')
+    @board[0][1] = Knight.create(:color => :white, :name => :knight, :position => "10", :x_axis => 1, :y_axis => 0, :image => 'white-knight.gif')
+    @board[0][2] = Bishop.create(:color => :white, :name => :bishop, :position => "20", :x_axis => 2, :y_axis =>0, :image => 'white-bishop.gif')
+    @board[0][3] = Queen.create(:color => :white, :name => :queen, :position => "30", :x_axis => 3, :y_axis => 0, :image => 'white-queen.gif')
+    @board[0][4] = King.create(:color => :white, :name => :king, :position => "40", :x_axis => 4, :y_axis => 0, :image => 'white-king.gif')
+    @board[0][5] = Bishop.create(:color => :white, :name => :bishop, :position => "50", :x_axis => 5, :y_axis => 0, :image => 'white-bishop.gif')
+    @board[0][6] = Knight.create(:color => :white, :name => :knight, :position => "60", :x_axis =>6, :y_axis => 0, :image => 'white-knight.gif')
+    @board[0][7] = Rook.create(:color => :white, :name => :rook, :position => "70", :x_axis => 7, :y_axis => 0, :image => 'white-rook.gif')
+    @board[1][0] = Pawn.create(:color => :white, :name => :pawn, :position => "01", :x_axis => 0, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][1] = Pawn.create(:color => :white, :name => :pawn, :position => "11", :x_axis => 1, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][2] = Pawn.create(:color => :white, :name => :pawn, :position => "21", :x_axis => 2, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][3] = Pawn.create(:color => :white, :name => :pawn, :position => "31", :x_axis => 3, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][4] = Pawn.create(:color => :white, :name => :pawn, :position => "41", :x_axis => 4, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][5] = Pawn.create(:color => :white, :name => :pawn, :position => "51", :x_axis => 5, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][6] = Pawn.create(:color => :white, :name => :pawn, :position => "61", :x_axis => 6, :y_axis => 1, :image => 'white-pawn.gif')
+    @board[1][7] = Pawn.create(:color => :white, :name => :pawn, :position => "71", :x_axis => 7, :y_axis => 1, :image => 'white-pawn.gif')
   
   # #black pieces
-    @board[7][0] = Rook.create(:color => :black, :name => :rook, :position => "07", :x_axis => 0, :y_axis => 7)
-    @board[7][1] = Knight.create(:color => :black, :name => :knight, :position => "17", :x_axis => 1, :y_axis => 7)
-    @board[7][2] = Bishop.create(:color => :black, :name => :bishop, :position => "27", :x_axis => 2, :y_axis => 7)
-    @board[7][3] = Queen.create(:color => :black, :name => :queen, :position => "37", :x_axis => 3, :y_axis => 7)
-    @board[7][4] = King.create(:color => :black, :name => :king, :position => "47", :x_axis => 4, :y_axis => 7)
-    @board[7][5] = Bishop.create(:color => :black, :name => :bishop, :position => "57", :x_axis => 5, :y_axis => 7)
-    @board[7][6] = Knight.create(:color => :black, :name => :knight, :position => "67", :x_axis => 6, :y_axis => 7)
-    @board[7][7] = Rook.create(:color => :black, :name => :rook, :position => "77", :x_axis => 7, :y_axis => 7)
-    @board[6][0] = Pawn.create(:color => :black, :name => :pawn, :position => "06", :x_axis => 0, :y_axis => 6)
-    @board[6][1] = Pawn.create(:color => :black, :name => :pawn, :position => "16", :x_axis => 1, :y_axis => 6)
-    @board[6][2] = Pawn.create(:color => :black, :name => :pawn, :position => "26", :x_axis => 2, :y_axis => 6)
-    @board[6][3] = Pawn.create(:color => :black, :name => :pawn, :position => "36", :x_axis => 3, :y_axis => 6)
-    @board[6][4] = Pawn.create(:color => :black, :name => :pawn, :position => "46", :x_axis => 4, :y_axis => 6)
-    @board[6][5] = Pawn.create(:color => :black, :name => :pawn, :position => "56", :x_axis => 5, :y_axis => 6)
-    @board[6][6] = Pawn.create(:color => :black, :name => :pawn, :position => "66", :x_axis => 6, :y_axis => 6)
-    @board[6][7] = Pawn.create(:color => :black, :name => :pawn, :position => "76", :x_axis => 7, :y_axis => 6)
+    @board[7][0] = Rook.create(:color => :black, :name => :rook, :position => "07", :x_axis => 0, :y_axis => 7, :image => 'black-rook.gif')
+    @board[7][1] = Knight.create(:color => :black, :name => :knight, :position => "17", :x_axis => 1, :y_axis => 7, :image => 'black-knight.gif')
+    @board[7][2] = Bishop.create(:color => :black, :name => :bishop, :position => "27", :x_axis => 2, :y_axis => 7, :image => 'black-bishop.gif')
+    @board[7][3] = Queen.create(:color => :black, :name => :queen, :position => "37", :x_axis => 3, :y_axis => 7, :image => 'black-queen.gif')
+    @board[7][4] = King.create(:color => :black, :name => :king, :position => "47", :x_axis => 4, :y_axis => 7, :image => 'black-king.gif')
+    @board[7][5] = Bishop.create(:color => :black, :name => :bishop, :position => "57", :x_axis => 5, :y_axis => 7, :image => 'black-bishop.gif')
+    @board[7][6] = Knight.create(:color => :black, :name => :knight, :position => "67", :x_axis => 6, :y_axis => 7, :image => 'black-knight.gif')
+    @board[7][7] = Rook.create(:color => :black, :name => :rook, :position => "77", :x_axis => 7, :y_axis => 7, :image => 'black-rook.gif')
+    @board[6][0] = Pawn.create(:color => :black, :name => :pawn, :position => "06", :x_axis => 0, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][1] = Pawn.create(:color => :black, :name => :pawn, :position => "16", :x_axis => 1, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][2] = Pawn.create(:color => :black, :name => :pawn, :position => "26", :x_axis => 2, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][3] = Pawn.create(:color => :black, :name => :pawn, :position => "36", :x_axis => 3, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][4] = Pawn.create(:color => :black, :name => :pawn, :position => "46", :x_axis => 4, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][5] = Pawn.create(:color => :black, :name => :pawn, :position => "56", :x_axis => 5, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][6] = Pawn.create(:color => :black, :name => :pawn, :position => "66", :x_axis => 6, :y_axis => 6, :image => 'black-pawn.gif')
+    @board[6][7] = Pawn.create(:color => :black, :name => :pawn, :position => "76", :x_axis => 7, :y_axis => 6, :image => 'black-pawn.gif')
 
     #Piece.all
 
