@@ -70,4 +70,8 @@ class Game < ActiveRecord::Base
    @board
   end
 
+  def piece_at(target_x_axis, target_y_axis)#destination of piece
+   self.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
+  end
+
 end

@@ -5,3 +5,6 @@ FactoryGirl.define do
     password_confirmation "passpassword1"
   end
 end
+
+
+

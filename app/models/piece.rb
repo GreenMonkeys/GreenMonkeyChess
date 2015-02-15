@@ -11,24 +11,21 @@ class Piece < ActiveRecord::Base
   scope :queens, -> {where(type: 'Queen') }
   scope :pawns, -> {where(type: 'Pawn') }
 
-  def move_to!(x_axis, y_axis)#Check methods .same_piece() and .capture()
-  	if same_piece(x_axis, y_axis).nil? 
+  def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
+  	if self.game.piece_at(x_axis, y_axis).nil? 
       update_attributes(:x_axis => x_axis, :y_axis => y_axis)
-  	elsif self.color == same_piece(x_axis, y_axis).color
-      print "Traitor!"
-    elsif self.color != same_piece(x_axis, y_axis).color
-      capture(x_axis, y_axis) #"For the king"
+      return true
+  	elsif self.color == self.game.piece_at(x_axis, y_axis).color
+      return false
+    elsif self.color != self.game.piece_at(x_axis, y_axis).color
+      capture(x_axis, y_axis)
+      return true #"For the king"
   	end
   end
   
-  def same_piece(target_x_axis, target_y_axis)#destination of piece
-   actual_board = Game.find(self.game_id)
-   actual_board.board[target_y_axis][target_x_axis]
-  end
-
   def capture(target_x_axis, target_y_axis)
-    actual_board = Game.find(self.game_id)
-    actual_board.board[target_y_axis][target_x_axis].destroy
+    captured = self.game.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
+    captured.update_attributes(:x_axis => nil, :y_axis => nil)
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
   end
 
