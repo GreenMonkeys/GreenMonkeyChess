@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207172321) do
+ActiveRecord::Schema.define(version: 20150215205855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20150207172321) do
     t.string   "name"
     t.string   "color"
     t.string   "image"
-    t.string   "position"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -50,7 +49,6 @@ ActiveRecord::Schema.define(version: 20150207172321) do
 
   add_index "pieces", ["game_id"], name: "index_pieces_on_game_id", using: :btree
   add_index "pieces", ["name"], name: "index_pieces_on_name", using: :btree
-  add_index "pieces", ["position"], name: "index_pieces_on_position", using: :btree
   add_index "pieces", ["type"], name: "index_pieces_on_type", using: :btree
   add_index "pieces", ["x_axis"], name: "index_pieces_on_x_axis", using: :btree
   add_index "pieces", ["y_axis"], name: "index_pieces_on_y_axis", using: :btree
