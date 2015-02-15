@@ -66,7 +66,7 @@ class Game < ActiveRecord::Base
 
     #Piece.all
 
-   self.pieces << Piece.where(game_id: self.id)
+   
    @board
 
   end
