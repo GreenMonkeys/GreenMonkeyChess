@@ -1,6 +1,8 @@
 class Game < ActiveRecord::Base
+
  	has_and_belongs_to_many :users
 	has_many :pieces
+	belongs_to :user
   
   delegate :rooks, :knights, :bishops, :kings, :queens, to: :pieces
 
@@ -69,5 +71,6 @@ class Game < ActiveRecord::Base
    self.pieces << Piece.all
    @board
   end
+
 
 end
