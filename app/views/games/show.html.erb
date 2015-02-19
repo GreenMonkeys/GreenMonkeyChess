@@ -2,7 +2,7 @@
 
 	<table id = 'chess'>
 		<% @board.each do |y| %>
-		<tr clas = '<%= @board.index(y) %>' >
+		<tr class = '<%= @board.index(y) %>' >
 			<% y.each do |x| %>
 				<% if x.nil? %>
 				<td class = '<% y.index(x) %>'></td>
