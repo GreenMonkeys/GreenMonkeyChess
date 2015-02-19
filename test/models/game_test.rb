@@ -4,7 +4,7 @@ class GameTest < ActiveSupport::TestCase
  
   game = Game.create(:user_id => 1)
  
-   test "Initial board position" do
+    test "Initial board position" do
       expected = [[:rook, :knight, :bishop, :queen, :king, :bishop, :knight, :rook],
                   [:pawn, :pawn, :pawn, :pawn, :pawn, :pawn, :pawn, :pawn],
                   [nil, nil, nil, nil, nil, nil, nil, nil],
