@@ -71,7 +71,7 @@ class Game < ActiveRecord::Base
   end
 
   def is_obstructed(position_1, position_2) # check if proposed move is obstructed
-
+    
     # get begin and end coords from position
     begin_y = position_1[0]
     end_y = position_2[0]
@@ -82,10 +82,11 @@ class Game < ActiveRecord::Base
     (end_y - begin_y != 0 && end_x - begin_x != 0) ? (diag_move = true) : (diag_move = false)
 
     # loop through coords along proposed path and check if empty
+    # ignore begin and end coords
     (begin_y..end_y).each do |y|
       (begin_x..end_x).each do |x|
-        next if position_1 == [y,x] || diag_move && (y - begin_y).abs != (x - begin_x).abs
-        # go to next x if loop is at current position or is not along diagonal
+        next if [y,x] == position_1 || [y,x] == position_2 || diag_move && (y - begin_y).abs != (x - begin_x).abs
+        # go to next x if loop is at current or proposed position or is not along diagonal
         return true unless Piece.where(y_axis: y, x_axis: x).empty?
       end
     end
