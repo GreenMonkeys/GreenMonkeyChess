@@ -1,0 +1,19 @@
+<div class = 'col-xs-10 col-xs-offset-1'>
+
+	<table id = 'chess'>
+		<% @board.each do |y| %>
+		<tr class = '<%= @board.index(y) %>' >
+			<% y.each do |x| %>
+				<% if x.nil? %>
+				<td class = '<% y.index(x) %>'></td>
+				<% else %>
+				<td class = '<% y.index(x) %>'>
+					<%= image_tag x.image, :class => 'responsive' %>
+				</td>
+				<% end %>
+			<% end %>
+		</tr>
+		<% end %>
+	</table>
+
+</div>

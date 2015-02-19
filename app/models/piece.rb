@@ -10,4 +10,5 @@ class Piece < ActiveRecord::Base
   scope :kings, -> {where(type: 'King') }
   scope :queens, -> {where(type: 'Queen') }
   scope :pawns, -> {where(type: 'Pawn') }
+
 end
