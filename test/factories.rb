@@ -4,4 +4,8 @@ FactoryGirl.define do
     password "passpassword1"
     password_confirmation "passpassword1"
   end
+
+  factory :game do
+  	name "tough game"
+  end
 end
