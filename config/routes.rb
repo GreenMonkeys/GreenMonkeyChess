@@ -2,10 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   root 'static_pages#index'
 
+  resources :games
 
-  resources :games do
-    resources :pieces, to: 'games#select', :only => [:show]
-  end
+  get '/select/pieces/:id', to: 'games#select', as: :game_piece_select
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

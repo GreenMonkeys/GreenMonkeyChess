@@ -10,7 +10,7 @@ class GamesController < ApplicationController
 	end
 
 	def select
-		@game = Game.find(params[:id])
+		@piece = Piece.find(params[:id])
 	end
 
 end
