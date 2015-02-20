@@ -8,8 +8,9 @@
 					<td class = '<% row.index(square) %>'><%= link_to raw('&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'), :url =>'#'%></td>
 				<% else %>
 				<td class = '<% row.index(square) %>'>
-					<%= link_to image_tag square.image, game_piece_select_path(square), :class => 'responsive' %>
+					<%= link_to image_tag square.image, game_piece_path(square.id), :class => 'responsive' %>
 					<%= square.id %>
+					<%= square.game_id %>
 				</td>
 				<% end %>
 			<% end %>
@@ -17,4 +18,5 @@
 		<% end %>
 	</table>
 
+<%= @game.id %>
 </div>
