@@ -7,14 +7,14 @@ class GameTest < ActiveSupport::TestCase
   end
  
   test "Initial board position" do
-    expected = [[:rook, :knight, :bishop, :queen, :king, :bishop, :knight, :rook],
-                [:pawn, :pawn, :pawn, :pawn, :pawn, :pawn, :pawn, :pawn],
+    expected = [["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"],
+                ["Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn"],
                 [nil, nil, nil, nil, nil, nil, nil, nil],
                 [nil, nil, nil, nil, nil, nil, nil, nil],
                 [nil, nil, nil, nil, nil, nil, nil, nil],
                 [nil, nil, nil, nil, nil, nil, nil, nil],
-                [:pawn, :pawn, :pawn, :pawn, :pawn, :pawn, :pawn, :pawn],
-                [:rook, :knight, :bishop, :queen, :king, :bishop, :knight, :rook]].flatten
+                ["Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn"],
+                ["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"]].flatten
                
                 
       
@@ -25,7 +25,7 @@ class GameTest < ActiveSupport::TestCase
         if y.nil?
           actual << y
           else
-          actual << y.name 
+          actual << y.type 
         end
       end
     end

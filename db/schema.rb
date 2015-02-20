@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150215205855) do
+ActiveRecord::Schema.define(version: 20150220174614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150215205855) do
   add_index "games_users", ["users_id"], name: "index_games_users_on_users_id", using: :btree
 
   create_table "pieces", force: true do |t|
-    t.string   "name"
     t.string   "color"
     t.string   "image"
     t.integer  "game_id"
@@ -48,7 +47,6 @@ ActiveRecord::Schema.define(version: 20150215205855) do
   end
 
   add_index "pieces", ["game_id"], name: "index_pieces_on_game_id", using: :btree
-  add_index "pieces", ["name"], name: "index_pieces_on_name", using: :btree
   add_index "pieces", ["type"], name: "index_pieces_on_type", using: :btree
   add_index "pieces", ["x_axis"], name: "index_pieces_on_x_axis", using: :btree
   add_index "pieces", ["y_axis"], name: "index_pieces_on_y_axis", using: :btree
