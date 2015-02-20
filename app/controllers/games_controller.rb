@@ -9,4 +9,7 @@ class GamesController < ApplicationController
 	    @board = @game.board
 	end
 
+	def select
+	end
+
 end

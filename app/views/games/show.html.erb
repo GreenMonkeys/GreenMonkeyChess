@@ -5,10 +5,11 @@
 		<tr class = '<%= @board.index(y) %>' >
 			<% y.each do |x| %>
 				<% if x.nil? %>
-				<td class = '<% y.index(x) %>'></td>
+				
+					<td class = '<% y.index(x) %>'><%= link_to raw('&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;'), :url =>'#'%></td>
 				<% else %>
 				<td class = '<% y.index(x) %>'>
-					<%= image_tag x.image, :class => 'responsive' %>
+					<%= link_to image_tag x.image, :class => 'responsive', :url => '#' %>
 				</td>
 				<% end %>
 			<% end %>
