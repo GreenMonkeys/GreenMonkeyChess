@@ -13,4 +13,7 @@ class GamesController < ApplicationController
 	    @board = @game.board
 	end
 
+	def new
+		@game = Game.new
+	end
 end

@@ -10,4 +10,20 @@ class GamesControllerTest < ActionController::TestCase
 	  get :index
 	  assert_response :success
     end
+
+  test "create" do
+    user = FactoryGirl.create(:user)
+    sign_in user
+
+    assert_difference 'Place.count' do
+      post :create, {:game => {
+          :name => 'Tough game.'
+        }
+      }
+    end
+    assert_redirected_to games_path
+
+    assert_equal 1, user.places.count
+  end
+
 end
