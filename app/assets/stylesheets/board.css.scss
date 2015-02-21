@@ -43,3 +43,12 @@ img {
 	height: 75px;
 	width: 75px;
 }
+
+td.selected {
+	border: 2px solid #FF0000;
+}
+
+table a:hover {
+	display: block;
+	text-decoration: none;
+}
