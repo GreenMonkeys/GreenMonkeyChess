@@ -2,7 +2,7 @@ class Game < ActiveRecord::Base
  	has_and_belongs_to_many :users
 	has_many :pieces
   
-  delegate :rooks, :knights, :bishops, :kings, :queens, to: :pieces
+  delegate :rooks, :knights, :bishops, :kings, :queens, :pawns, to: :pieces
 
   def board
     return @board if @board.present?
@@ -70,7 +70,7 @@ class Game < ActiveRecord::Base
 
   end
 
-  def is_obstructed(position_1, position_2) # check if proposed move is obstructed
+  def is_obstructed?(position_1, position_2) # check if proposed move is obstructed
     
     # get begin and end coords from position
     begin_y = position_1[0]
@@ -87,7 +87,7 @@ class Game < ActiveRecord::Base
       (begin_x..end_x).each do |x|
         next if [y,x] == position_1 || [y,x] == position_2 || diag_move && (y - begin_y).abs != (x - begin_x).abs
         # go to next x if loop is at current or proposed position or is not along diagonal
-        return true unless Piece.where(y_axis: y, x_axis: x).empty?
+        return true unless self.pieces.where(y_axis: y, x_axis: x).empty?
       end
     end
     return false

@@ -11,4 +11,42 @@ class Piece < ActiveRecord::Base
   scope :queens, -> {where(type: 'Queen') }
   scope :pawns, -> {where(type: 'Pawn') }
 
+  # define some helper methods for move validation
+  def raise_exceptions(position_2)
+    raise "this move is not within the board" unless self.move_within_board?(position_2)
+    raise "this move is obstructed" if (self.game.is_obstructed?(self.current_position, position_2) && !(self.instance_of? Knight))
+  end
+
+  def current_position
+    [self.y_axis, self.x_axis]
+  end
+
+  def delta_x(position_2)
+    delta_x = position_2[1] - self.current_position[1]
+  end
+
+  def delta_y(position_2)
+    delta_y = position_2[0] - self.current_position[0]
+  end
+
+  def distace(position_2)
+    sqrt(self.delta_y(position_2) ** 2 + self.delta_x(position_2) ** 2)
+  end
+
+  def horizontal_move?(position_2)
+    (delta_y(position_2) == 0 && delta_x(position_2) != 0) ? true : false
+  end
+
+  def vertical_move?(position_2)
+    (delta_x(position_2) == 0 && delta_y(position_2) != 0) ? true : false
+  end
+
+  def diagonal_move?(position_2)
+    delta_y(position_2).abs == delta_x(position_2).abs ? true : false
+  end
+
+  def move_within_board?(position_2)
+    position_2.select{|coord| coord > 7 || coord < 0}.empty? ? true : false
+  end
+
 end
