@@ -28,5 +28,4 @@ class Piece < ActiveRecord::Base
     captured.update_attributes(:x_axis => nil, :y_axis => nil)
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
   end
-
 end
