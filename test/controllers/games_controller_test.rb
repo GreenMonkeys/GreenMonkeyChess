@@ -11,19 +11,29 @@ class GamesControllerTest < ActionController::TestCase
 	  assert_response :success
     end
 
-  test "create" do
-    user = FactoryGirl.create(:user)
-    sign_in user
-
-    assert_difference 'Place.count' do
-      post :create, {:game => {
-          :name => 'Tough game.'
-        }
-      }
+    test "create not signed in" do
+    	assert_no_difference 'Game.count' do
+    		post :create, {:game => {
+    			:name => 'tough game'
+    			}
+    		}
+    	end
+    	assert_redirected_to new_user_session_path
     end
-    assert_redirected_to games_path
 
-    assert_equal 1, user.places.count
-  end
+#  test "create" do
+#    user = FactoryGirl.create(:user)
+#    sign_in user
+
+#    assert_difference 'Place.count' do
+#      post :create, {:game => {
+ #         :name => 'Tough game.'
+#        }
+#      }
+#    end
+#    assert_redirected_to games_path
+#
+ #   assert_equal 1, user.games.count
+ # end
 
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'games#index'
+  resources :games
 
   get '/games/:id', to: 'games#show'
   # The priority is based upon order of creation: first created -> highest priority.
