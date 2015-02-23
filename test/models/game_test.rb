@@ -1,30 +1,31 @@
 require 'test_helper'
 
 class GameTest < ActiveSupport::TestCase
- test "Initial board position" do
-   
-    game = Game.create(:user_id => 1)
-    
-       
-    expected = [["00", "10", "20", "30", "40", "50", "60", "70"],
-                ["01", "11", "21", "31", "41", "51", "61", "71"],
-                [nil, nil, nil, nil,nil,nil,nil,nil],
-                [nil, nil, nil, nil,nil,nil,nil,nil],
-                [nil, nil, nil, nil,nil,nil,nil,nil],
-                [nil, nil, nil, nil,nil,nil,nil,nil],
-                ["06", "16", "26", "36", "46", "56", "66", "76"],
-                ["07", "17", "27", "37", "47", "57", "67", "77"]].flatten
+ 
+  setup do
+    @game = Game.create(:user_id => 1)
+  end
+ 
+  test "Initial board position" do
+    expected = [["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"],
+                ["Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn"],
+                [nil, nil, nil, nil, nil, nil, nil, nil],
+                [nil, nil, nil, nil, nil, nil, nil, nil],
+                [nil, nil, nil, nil, nil, nil, nil, nil],
+                [nil, nil, nil, nil, nil, nil, nil, nil],
+                ["Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn", "Pawn"],
+                ["Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"]].flatten
                
                 
       
     actual =  []  
    
-    game.populate_board.each do |x|
+    @game.populate_board.each do |x|
       x.each do |y|
         if y.nil?
           actual << y
           else
-          actual << y.position 
+          actual << y.type 
         end
       end
     end
