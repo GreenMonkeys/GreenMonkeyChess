@@ -12,9 +12,8 @@ class Piece < ActiveRecord::Base
   scope :pawns, -> {where(type: 'Pawn') }
 
   # define some helper methods for move validation
-  def raise_exceptions(position_2)
+  def ensure_reasonable_move!(position_2)
     raise "this move is not within the board" unless self.move_within_board?(position_2)
-    raise "this move is obstructed" if (self.game.is_obstructed?(self.current_position, position_2) && !(self.instance_of? Knight))
   end
 
   def current_position
@@ -29,7 +28,7 @@ class Piece < ActiveRecord::Base
     delta_y = position_2[0] - self.current_position[0]
   end
 
-  def distace(position_2)
+  def distance(position_2)
     sqrt(self.delta_y(position_2) ** 2 + self.delta_x(position_2) ** 2)
   end
 
