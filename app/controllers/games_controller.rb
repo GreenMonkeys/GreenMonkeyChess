@@ -19,10 +19,15 @@ class GamesController < ApplicationController
 
 	def create
 
-    @game = Game.create(:opponent_id => new_opponent_id, :user_id => current_user.id)
-    @game.initialize_the_board!
-    redirect_to game_path(@game)
+    Game.create(game_params)
+    redirect_to games_path
+    #need to redirect this to the board once it's been made
 	end
 
+private
+
+	def game_params
+		params.require(:game).permit(:name)
+	end
 
 end
