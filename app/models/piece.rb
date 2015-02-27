@@ -47,8 +47,8 @@ class Piece < ActiveRecord::Base
     delta_y = position_2[0] - self.current_position[0]
   end
 
-  def distace(position_2)
-    sqrt(self.delta_y(position_2) ** 2 + self.delta_x(position_2) ** 2)
+  def distance(position_2)
+    Math.sqrt(self.delta_y(position_2) ** 2 + self.delta_x(position_2) ** 2).to_i
   end
 
   def horizontal_move?(position_2)

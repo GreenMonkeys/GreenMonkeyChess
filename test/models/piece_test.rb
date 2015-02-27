@@ -31,7 +31,7 @@ class PieceTest < ActiveSupport::TestCase
     assert_not move_allied_square, "It fails if allied square"
     assert_equal @starting_pos.color, @game.piece_at(1,0).color, "[allied_test]"
     assert @game.piece_at(0,0).present?, "Piece has moved [allied_test]"
-
+  end
 
   test "Knight move validation" do
     game = Game.create(user_id: 1)
