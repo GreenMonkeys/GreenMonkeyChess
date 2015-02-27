@@ -4,7 +4,13 @@ Rails.application.routes.draw do
 
   resources :games
 
-  get '/select/pieces/:id', to: 'games#select', as: :game_piece_select
+  resources :games, :only => [:show] do
+
+    get '/select/pieces/:id', to: 'games#select', as: :piece_select
+    put '/select/pieces/:id/:y_axis/:x_axis', to: 'games#piece_update', as: :piece_update
+
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
