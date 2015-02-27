@@ -39,7 +39,7 @@ class GameTest < ActiveSupport::TestCase
     game.populate_board
 
     # move Queen with the very first move of a game 
-    test = game.is_obstructed([3,0], [7,4])
+    test = game.is_obstructed?([3,0], [7,4])
 
     assert test
   end
@@ -50,7 +50,7 @@ class GameTest < ActiveSupport::TestCase
     game.rooks.create!(:y_axis => 5, :x_axis => 4)
 
     # move Pawn with the very first move of a game
-    test = game.is_obstructed([5,5], [3,3])
+    test = game.is_obstructed?([5,5], [3,3])
 
     assert_not test
   end
@@ -61,7 +61,7 @@ class GameTest < ActiveSupport::TestCase
     game.rooks.create!(:y_axis => 4, :x_axis => 4)
 
     # move Pawn with the very first move of a game
-    test = game.is_obstructed([3,3], [3,5])
+    test = game.is_obstructed?([3,3], [3,5])
 
     assert test
   end
@@ -72,7 +72,7 @@ class GameTest < ActiveSupport::TestCase
     game.rooks.create!(:y_axis => 4, :x_axis => 4)
 
     # move Pawn with the very first move of a game
-    test = game.is_obstructed([3,5], [3,3])
+    test = game.is_obstructed?([3,5], [3,3])
 
     assert_not test
   end
@@ -82,7 +82,7 @@ class GameTest < ActiveSupport::TestCase
     game.rooks.create!(:y_axis => 4, :x_axis => 3)
 
     # move Pawn with the very first move of a game
-    test = game.is_obstructed([3,3], [6,3])
+    test = game.is_obstructed?([3,3], [6,3])
 
     assert test
   end
@@ -92,7 +92,7 @@ class GameTest < ActiveSupport::TestCase
     game.rooks.create!(:y_axis => 4, :x_axis => 4)
 
     # move Pawn with the very first move of a game
-    test = game.is_obstructed([6,3], [3,3])
+    test = game.is_obstructed?([6,3], [3,3])
 
     assert_not test
   end
