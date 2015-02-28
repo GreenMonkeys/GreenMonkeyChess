@@ -74,15 +74,21 @@ class Game < ActiveRecord::Base
     end_y = position_2[0]
     begin_x = position_1[1]
     end_x = position_2[1]
+    delta_y = end_y - begin_y
+    delta_x = end_x - begin_x
+
+    # set range variables
+    end_y >= begin_y ? (y_range = (begin_y..end_y).to_a) : (y_range = (begin_y.downto(end_y)).to_a)
+    end_x >= begin_x ? (x_range = (begin_x..end_x).to_a) : (x_range = (begin_x.downto(end_x)).to_a)
 
     # check if proposed move is diagonal
-    (end_y - begin_y != 0 && end_x - begin_x != 0) ? (diag_move = true) : (diag_move = false)
+    (delta_y != 0 && delta_x != 0 && delta_y.abs == delta_x.abs) ? (diag_move = true) : (diag_move = false)
 
     # loop through coords along proposed path and check if empty
     # ignore begin and end coords
-    (begin_y..end_y).each do |y|
-      (begin_x..end_x).each do |x|
-        next if [y,x] == position_1 || [y,x] == position_2 || diag_move && (y - begin_y).abs != (x - begin_x).abs
+    y_range.each do |y|
+      x_range.each do |x|
+        next if [y,x] == position_1 || [y,x] == position_2 || (diag_move && (y - begin_y).abs != (x - begin_x).abs)
         # go to next x if loop is at current or proposed position or is not along diagonal
         return true unless self.pieces.where(y_axis: y, x_axis: x).empty?
       end
