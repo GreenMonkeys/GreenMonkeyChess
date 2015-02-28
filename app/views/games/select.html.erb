@@ -5,11 +5,22 @@
 			<tr class = '<%= y %>' >
 				<% @board[y].each_index do |x| %>
 					<% if @board[y][x].nil? %>
-						<td class = '<%= x %>'></td>
+						<td class = '<%= x %>'>
+							<%= link_to game_piece_update_path(:x_axis => x, :y_axis => y), :method => 'put' do %>
+							<p>&nbsp; &nbsp; &nbsp;</p>
+							<p>&nbsp; &nbsp; &nbsp;</p>
+							<% end %>
+						</td>
+					<% elsif @board[y][x].id == @piece.id %>
+						<td class = '<%= x %> selected'>
+							<%= image_tag @piece.image %>
+						</td>
 					<% else %>
 						<td class = '<%= x %>'>
 							<%= link_to game_piece_select_path(@board[y][x].game_id, @board[y][x].id) do %>
+							<%= link_to game_piece_update_path(:x_axis => x, :y_axis => y), :method => 'put' do %>
 							<%= image_tag @board[y][x].image, :class => 'responsive' %>
+							<% end %>
 							<% end %>
 						</td>
 					<% end %>
@@ -18,3 +29,4 @@
 		<% end %>
 	</table>
 </div>
+
