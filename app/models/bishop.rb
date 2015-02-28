@@ -1,8 +1,8 @@
 class Bishop < Piece
   def valid_move?(position_2) # queen moves straight in any direction
-    self.raise_exceptions(position_2)
+    self.ensure_reasonable_move!(position_2)
     if self.diagonal_move?(position_2)
-      return true
+      return true unless self.game.is_obstructed?(self.current_position, position_2)
     else
       return false
     end
