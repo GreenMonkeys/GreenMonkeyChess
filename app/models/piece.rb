@@ -11,6 +11,7 @@ class Piece < ActiveRecord::Base
   scope :queens, -> {where(type: 'Queen') }
   scope :pawns, -> {where(type: 'Pawn') }
 
+
   def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
   	if self.game.piece_at(x_axis, y_axis).nil? 
       update_attributes(:x_axis => x_axis, :y_axis => y_axis)

@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   resources :games
 
   resources :games, :only => [:show] do
-
     get '/select/pieces/:id', to: 'games#select', as: :piece_select
     put '/select/pieces/:id/:y_axis/:x_axis', to: 'games#piece_update', as: :piece_update
-
+    get '/select/pieces/:id/promote', to: 'games#promote_select', as: :promote_select
+    put '/select/pieces/:id/promote/:type/:image', to: 'games#promote_update', as: :promote_update
   end
 
 
