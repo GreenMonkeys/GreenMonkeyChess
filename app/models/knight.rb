@@ -5,9 +5,7 @@ class Knight < Piece
     if (self.delta_x(position_2).abs == 1 && self.delta_y(position_2).abs == 2) ||
       (self.delta_y(position_2).abs == 1 && self.delta_x(position_2).abs == 2)
       return true
-    else
-      return false
     end
+    return false
   end
-
 end

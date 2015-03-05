@@ -13,5 +13,4 @@ class Pawn < Piece
 			  return false
     end
   end
-
 end
