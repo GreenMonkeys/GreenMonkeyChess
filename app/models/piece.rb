@@ -2,16 +2,16 @@ class Piece < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :game
 
-
-  #Allows an easier navigation between model. E.g.  Rook.find(56) => <Rook id: 56, name: :rook, color: :white, image: nil, position: 00, game_id: 20...>
+	 #Allows an easier navigation between model. E.g.  Rook.find(56) => <Rook id: 56, name: :rook, color: :white, image: nil, position: 00, game_id: 20...>
   scope :rooks, -> { where(type: 'Rook') }
   scope :knights, -> { where(type: 'Knight') }
   scope :bishops, -> { where(type: 'Bishop') }
-  scope :kings, -> {where(type: 'King') }
-  scope :queens, -> {where(type: 'Queen') }
-  scope :pawns, -> {where(type: 'Pawn') }
+  scope :kings, -> { where(type: 'King') }
+  scope :queens, -> { where(type: 'Queen') }
+  scope :pawns, -> { where(type: 'Pawn') }
 
   def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
+	unless !self.valid_move?([y_axis, x_axis])
   	if self.game.piece_at(x_axis, y_axis).nil?
       update_attributes(:x_axis => x_axis, :y_axis => y_axis)
       return true
@@ -21,6 +21,8 @@ class Piece < ActiveRecord::Base
       capture(x_axis, y_axis)
       return true #"For the king"
   	end
+	end
+	return false
   end
 
   def capture(target_x_axis, target_y_axis)

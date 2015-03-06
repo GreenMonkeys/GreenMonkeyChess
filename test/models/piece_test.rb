@@ -44,21 +44,24 @@ class PieceTest < ActiveSupport::TestCase
                    [7,0],      [7,2],[7,3],[7,4],[7,5],[7,6]      ]
   end
   test "move to an empty square" do
-    move_empty_square = @game.piece_at(0,0).move_to!(0,2)
+    start_pos = @game.piece_at(2,1)
+    move_empty_square = @game.piece_at(2,1).move_to!(2,2)
     move_empty_square
     assert move_empty_square, "It fails if not empty"
-    assert @game.piece_at(0,2).present?, "The piece is not present in the given position"
-    assert @game.piece_at(0,0).nil?, "Piece is still in its position[empty_test]"
-    assert_equal @starting_pos.id, @game.piece_at(0,2).id, "Not the same piece.id [enemy_test]"
+    assert @game.piece_at(2,2).present?, "The piece is not present in the given position"
+    assert @game.piece_at(2,1).nil?, "Piece is still in its position[empty_test]"
+    assert_equal start_pos.id, @game.piece_at(2,2).id, "Not the same piece.id [enemy_test]"
   end
 
   test "move to an enemy square" do
-    move_enemy_square = @game.piece_at(0,0).move_to!(7,7)
+    start_pos = @game.piece_at(5,5)
+    rook = Rook.create(x_axis: 5, y_axis: 5, game_id: @game.id, color: "white")
+    move_enemy_square = rook.move_to!(5,6)
     move_enemy_square
     assert move_enemy_square, "Return true only if enemy"
-    assert @game.piece_at(7,7).present?, "The piece is not present in the given position"
-    assert @starting_pos.present?, "Piece is still in its position[enemy_test]"
-    assert_equal @starting_pos.id, @game.piece_at(7,7).id, "Not the same piece.id [enemy_test]"
+    assert @game.piece_at(5,6).present?, "The piece is not present in the given position"
+    assert @game.piece_at(5,5).nil?, "Piece is still in its position[enemy_test]"
+    assert_equal start_pos.id, @game.piece_at(5,6).id, "Not the same piece.id [enemy_test]"
   end
 
   test "not move to an allied square" do

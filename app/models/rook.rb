@@ -1,5 +1,5 @@
 class Rook < Piece
-
+  
   def valid_move?(position_2) # rook moves up/down or left/right
     self.ensure_reasonable_move!(position_2)
     if self.horizontal_move?(position_2) || self.vertical_move?(position_2)

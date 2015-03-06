@@ -79,7 +79,7 @@ class Game < ActiveRecord::Base
     delta_x = end_x - begin_x
 
     # set range variables
-+   end_y >= begin_y ? (y_range = (begin_y..end_y).to_a) : (y_range = (begin_y.downto(end_y)).to_a)
+    end_y >= begin_y ? (y_range = (begin_y..end_y).to_a) : (y_range = (begin_y.downto(end_y)).to_a)
     end_x >= begin_x ? (x_range = (begin_x..end_x).to_a) : (x_range = (begin_x.downto(end_x)).to_a)
 
     # check if proposed move is diagonal
