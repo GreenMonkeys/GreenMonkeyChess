@@ -71,12 +71,12 @@ class Game < ActiveRecord::Base
   def is_obstructed?(position_1, position_2) # check if proposed move is obstructed
 
    # get begin and end coords from position
-    begin_y = position_1[0]
-    end_y = position_2[0]
-    begin_x = position_1[1]
-    end_x = position_2[1]
-    delta_y = end_y - begin_y
-    delta_x = end_x - begin_x
+    begin_y = position_1[0].to_i
+    end_y = position_2[0].to_i
+    begin_x = position_1[1].to_i
+    end_x = position_2[1].to_i
+    delta_y = end_y.to_i - begin_y.to_i
+    delta_x = end_x.to_i - begin_x.to_i
 
     # set range variables
     end_y >= begin_y ? (y_range = (begin_y..end_y).to_a) : (y_range = (begin_y.downto(end_y)).to_a)

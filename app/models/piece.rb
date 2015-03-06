@@ -41,11 +41,11 @@ class Piece < ActiveRecord::Base
   end
 
   def delta_x(position_2)
-    delta_x = position_2[1] - self.current_position[1]
+    delta_x = position_2[1].to_i - self.current_position[1].to_i
   end
 
   def delta_y(position_2)
-    delta_y = position_2[0] - self.current_position[0]
+    delta_y = position_2[0].to_i - self.current_position[0].to_i
   end
 
   def distance(position_2)

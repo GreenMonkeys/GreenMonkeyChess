@@ -2,7 +2,7 @@ class GamesController < ApplicationController
 
 	def show
 		@game = Game.find(params[:id])
-		
+
 		# used to initialize board
 	    # @board = @game.populate_board
 
@@ -18,7 +18,7 @@ class GamesController < ApplicationController
 	def piece_update
 		@game = Game.find(params[:game_id])
 		@piece = Piece.find(params[:id])
-		@piece.update_attributes(:x_axis => params[:x_axis], :y_axis => params[:y_axis])
+		@piece.move_to!(params[:x_axis], params[:y_axis])
 		redirect_to game_path(@game)
 	end
 
