@@ -19,11 +19,11 @@ class GamesController < ApplicationController
 		@game = Game.find(params[:game_id])
 		@piece = Piece.find(params[:id])
 
-		if :y_axis == 0 || 7
-			@piece.update_attributes(:x_axis => params[:x_axis], :y_axis => params[:y_axis])
-			redirect_to game_promote_select_path(@game)## TODO: promote page
+		@piece.move_to!(params[:x_axis], params[:y_axis])
+
+		if @piece.y_axis == 0 || @piece.y_axis == 7
+			redirect_to game_promote_select_path(:game_id => @game, :id => @piece)## TODO: promote page
 		else
-			@piece.update_attributes(:x_axis => params[:x_axis], :y_axis => params[:y_axis])
 			redirect_to game_path(@game)
 		end
 	end
@@ -34,9 +34,17 @@ class GamesController < ApplicationController
 		@piece = Piece.find(params[:id])
 	end
 
-	def promote_update
+	def promote_create
 		@game = Game.find(params[:game_id])
 		@piece = Piece.find(params[:id])
-		@piece.update_attributes(:type => params[:type], :image=> params[:image])
+		@piece_promote = piece_type.create(:color => @piece.image, :x_axis => @piece.x_axis, :y_axis => @piece.y_axis, :image => @piece.image_select(@piece.color, params[:type]), :game_id => @game.id)
+		@piece.destroy
+		redirect_to game_path(@game)
+	end
+	
+	private
+
+	def piece_type
+		Piece.types.include?(params[:type]) ? params[:type] : "Piece"
 	end
 end

@@ -12,6 +12,21 @@ class Piece < ActiveRecord::Base
   scope :pawns, -> {where(type: 'Pawn') }
 
 
+  IMAGE = {
+    'white Rook' => 'white-rook.gif',
+    'white Knight' => 'white-knight.gif',
+    'white Bishop' => 'white-bishop.gif',
+    'white King' => 'white-king.gif',
+    'white Queen' => 'white-queen.gif',
+    'white pawn' => 'white-pawn.gif',
+    'black Rook' => 'black-rook.gif',
+    'black Knight' => 'black-knight.gif',
+    'black Bishop' => 'black-bishop.gif',
+    'black King' => 'black-king.gif',
+    'black Queen' => 'black-queen.gif',
+    'black pawn' => 'black-pawn.gif',
+  }
+
   def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
   	if self.game.piece_at(x_axis, y_axis).nil? 
       update_attributes(:x_axis => x_axis, :y_axis => y_axis)
@@ -28,5 +43,9 @@ class Piece < ActiveRecord::Base
     captured = self.game.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
     captured.update_attributes(:x_axis => nil, :y_axis => nil)
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
+  end
+
+  def image_select(color, type)
+    IMAGE["#{color} #{type}"]
   end
 end
