@@ -54,8 +54,8 @@ class PieceTest < ActiveSupport::TestCase
   end
 
   test "move to an enemy square" do
-    start_pos = @game.piece_at(5,5)
     rook = Rook.create(x_axis: 5, y_axis: 5, game_id: @game.id, color: "white")
+    start_pos = @game.piece_at(5,5)
     move_enemy_square = rook.move_to!(5,6)
     move_enemy_square
     assert move_enemy_square, "Return true only if enemy"
