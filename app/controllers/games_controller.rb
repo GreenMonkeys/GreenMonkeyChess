@@ -37,14 +37,9 @@ class GamesController < ApplicationController
 	def promote_create
 		@game = Game.find(params[:game_id])
 		@piece = Piece.find(params[:id])
-		@piece_promote = piece_type.create(:color => @piece.image, :x_axis => @piece.x_axis, :y_axis => @piece.y_axis, :image => @piece.image_select(@piece.color, params[:type]), :game_id => @game.id)
+		@piece_promote = Piece.create(:color => @piece.image, :x_axis => @piece.x_axis, :y_axis => @piece.y_axis, :image => @piece.image_select(@piece.color, params[:type]), :game_id => @game.id, :type => params[:type])
 		@piece.destroy
 		redirect_to game_path(@game)
 	end
 	
-	private
-
-	def piece_type
-		Piece.types.include?(params[:type]) ? params[:type] : "Piece"
-	end
 end

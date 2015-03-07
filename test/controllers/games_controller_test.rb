@@ -39,4 +39,22 @@ class GamesControllerTest < ActionController::TestCase
 	   	assert_equal expected_coord, actual_coord
 	end
 
+	test 'pawn_promote' do
+		game = Game.create(:user_id => 1)
+	   	game.populate_board
+	   	board = game.board
+	   	pawn = board[1][0]
+
+	   	put :piece_update, :game_id => game.id, :id => pawn.id, :y_axis => 7, :x_axis => 0
+	
+
+	   	post :promote_create, :game_id => game.id, :id => pawn.id, :type => 'Queen'
+
+	   	pawn_promoted = Piece.where(:y_axis => board[7][0].y_axis, :x_axis => board[7][0].x_axis).first
+	   	expected_type = 'Queen'
+	   	actual_type = pawn_promoted.type
+
+	   	assert_equal expected_type, actual_type
+	end
+
 end

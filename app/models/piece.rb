@@ -13,18 +13,18 @@ class Piece < ActiveRecord::Base
 
 
   IMAGE = {
-    'white Rook' => 'white-rook.gif',
-    'white Knight' => 'white-knight.gif',
-    'white Bishop' => 'white-bishop.gif',
-    'white King' => 'white-king.gif',
-    'white Queen' => 'white-queen.gif',
-    'white pawn' => 'white-pawn.gif',
-    'black Rook' => 'black-rook.gif',
-    'black Knight' => 'black-knight.gif',
-    'black Bishop' => 'black-bishop.gif',
-    'black King' => 'black-king.gif',
-    'black Queen' => 'black-queen.gif',
-    'black pawn' => 'black-pawn.gif',
+    :whiteRook => 'white-rook.gif',
+    :whiteKnight => 'white-knight.gif',
+    :whiteBishop => 'white-bishop.gif',
+    :whiteKing => 'white-king.gif',
+    :whiteQueen => 'white-queen.gif',
+    :whitePawn => 'white-pawn.gif',
+    :blackRook => 'black-rook.gif',
+    :blackKnight => 'black-knight.gif',
+    :blackBishop => 'black-bishop.gif',
+    :blackKing => 'black-king.gif',
+    :blackQueen => 'black-queen.gif',
+    :blackPawn => 'black-pawn.gif'
   }
 
   def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
@@ -46,6 +46,6 @@ class Piece < ActiveRecord::Base
   end
 
   def image_select(color, type)
-    IMAGE["#{color} #{type}"]
+    IMAGE["#{color}#{type}".to_sym]
   end
 end
