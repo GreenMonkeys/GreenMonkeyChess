@@ -67,6 +67,7 @@ class Piece < ActiveRecord::Base
 
   def image_select(color, type)
     IMAGE["#{color}#{type}".to_sym]
+  end
 
   # define some helper methods for move validation
   def ensure_reasonable_move!(position_2)
