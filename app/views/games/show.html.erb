@@ -1,18 +1,38 @@
-<div class = 'col-xs-10 col-xs-offset-1'>
+<script>
+	$(function() {
+		$('.piece').draggable({
+			containment: 'tbody',
+			cursor: '-webkit-grabbing',
+			snap: '.square',
+			snapTolerance: 75/2
+		});
+		$('.square').droppable({
+			accept: '.piece',
+			drop: function(event, ui) {
+				var piece_id = $(ui.draggable).data('id');
+				var initial_position = $(ui.draggable).data('position');
+				var new_position = $(event.target).data('position');
+				console.log(piece_id, initial_position, new_position),
+        $(this)
+					.addClass( "ui-state-highlight" )
+			}
+		});
+	});
+</script>
 
+<%= @piece.inspect %>
+
+<div class = 'col-xs-10 col-xs-offset-1'>
 	<table id = 'chess'>
 		<% @board.each_index do |y| %>
 			<tr class = '<%= y %>' >
 				<% @board[y].each_index do |x| %>
-					<% if @board[y][x].nil? %>
-						<td class = '<%= x %>'></td>
-					<% else %>
-						<td class = '<%= x %>'>
-							<%= link_to game_piece_select_path(@board[y][x].game_id, @board[y][x].id) do %>
-							<%= image_tag @board[y][x].image, :class => 'responsive' %>
-							<% end %>
-						</td>
+					<td class = 'square <%= x %>' data-position = '<%= [y,x] %>' >
+					<% if !@board[y][x].nil? %>
+						<%= image_tag @board[y][x].image, :class => 'piece responsive', :cursor => '-webkit-grab',
+						:data => { :url => game_path(@game.id), :id => @board[y][x].id, :position => [y,x] } %>
 					<% end %>
+					</td>
 				<% end %>
 			</tr>
 		<% end %>
