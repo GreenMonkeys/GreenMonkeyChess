@@ -77,11 +77,14 @@ class PieceTest < ActiveSupport::TestCase
     knight = game.knights.where(color: :white).sample
     test1 = knight.valid_move?([knight.y_axis+2,knight.x_axis+1])
     test2 = knight.valid_move?([knight.y_axis+2,knight.x_axis])
+    exception = assert_raise(RuntimeError) { knight.valid_move?([knight.y_axis-2,knight.x_axis-2]) }
+    assert test1
+    assert_not test2
+    assert_equal "this move is not within the board", exception.message
     exception1 = assert_raise(RuntimeError) { knight.valid_move?([knight.y_axis-2,knight.x_axis-2]) }
     assert test1
     assert_not test2
     assert_equal "this move is not within the board", exception1.message
-
   end
 
   test "Queen move validation" do

@@ -67,10 +67,9 @@ class Game < ActiveRecord::Base
    @board
   end
 
-
   def is_obstructed?(position_1, position_2) # check if proposed move is obstructed
 
-   # get begin and end coords from position
+    # get begin and end coords from position
     begin_y = position_1[0]
     end_y = position_2[0]
     begin_x = position_1[1]

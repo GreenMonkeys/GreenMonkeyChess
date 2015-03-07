@@ -31,6 +31,24 @@ class Piece < ActiveRecord::Base
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
   end
 
+  def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
+  	if self.game.piece_at(x_axis, y_axis).nil? 
+      update_attributes(:x_axis => x_axis, :y_axis => y_axis)
+      return true
+  	elsif self.color == self.game.piece_at(x_axis, y_axis).color
+      return false
+    elsif self.color != self.game.piece_at(x_axis, y_axis).color
+      capture(x_axis, y_axis)
+      return true #"For the king"
+  	end
+  end
+  
+  def capture(target_x_axis, target_y_axis)
+    captured = self.game.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
+    captured.update_attributes(:x_axis => nil, :y_axis => nil)
+    update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
+  end
+
   # define some helper methods for move validation
   def ensure_reasonable_move!(position_2)
     raise "this move is not within the board" unless self.move_within_board?(position_2)

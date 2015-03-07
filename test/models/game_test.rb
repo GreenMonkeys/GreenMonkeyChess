@@ -44,12 +44,10 @@ class GameTest < ActiveSupport::TestCase
     assert test
   end
 
-    test "proposed diagonal move is not obstructed" do
+  test "proposed diagonal move is not obstructed" do
     game = Game.create(:user_id => 1)
     game.rooks.create!(:y_axis => 4, :x_axis => 5)
     game.rooks.create!(:y_axis => 5, :x_axis => 4)
-
-
     test = game.is_obstructed?([5,5], [3,3])
 
     assert_not test
@@ -59,8 +57,6 @@ class GameTest < ActiveSupport::TestCase
     game = Game.create(:user_id => 1)
     game.rooks.create!(:y_axis => 3, :x_axis => 4)
     game.rooks.create!(:y_axis => 4, :x_axis => 4)
-
-
     test = game.is_obstructed?([3,3], [3,5])
 
     assert test
@@ -70,8 +66,6 @@ class GameTest < ActiveSupport::TestCase
     game = Game.create(:user_id => 1)
     game.rooks.create!(:y_axis => 4, :x_axis => 3)
     game.rooks.create!(:y_axis => 4, :x_axis => 4)
-
-
     test = game.is_obstructed?([3,5], [3,3])
 
     assert_not test
@@ -80,8 +74,6 @@ class GameTest < ActiveSupport::TestCase
   test "proposed vertical move is obstructed" do
     game = Game.create(:user_id => 1)
     game.rooks.create!(:y_axis => 4, :x_axis => 3)
-
-
     test = game.is_obstructed?([3,3], [6,3])
 
     assert test
@@ -90,8 +82,6 @@ class GameTest < ActiveSupport::TestCase
   test "proposed vertical move is not obstructed" do
     game = Game.create(:user_id => 1)
     game.rooks.create!(:y_axis => 4, :x_axis => 4)
-
-
     test = game.is_obstructed?([6,3], [3,3])
 
     assert_not test
