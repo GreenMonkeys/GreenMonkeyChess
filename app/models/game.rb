@@ -1,7 +1,7 @@
 class Game < ActiveRecord::Base
  	has_and_belongs_to_many :users
 	has_many :pieces
-  
+
   delegate :rooks, :knights, :bishops, :kings, :queens, :pawns, to: :pieces
 
   def board
@@ -15,7 +15,7 @@ class Game < ActiveRecord::Base
                [nil, nil, nil, nil,nil,nil,nil,nil],
                [nil, nil, nil, nil,nil,nil,nil,nil]]
 
-  
+
   self.pieces.each do |p|
   x = p.x_axis
   y = p.y_axis
@@ -24,11 +24,11 @@ class Game < ActiveRecord::Base
   return @board
 
   end
-   
-  def populate_board    
+
+  def populate_board
     self.board
     #white pieces
-    #@board[y][x] <= IMPORTANT    
+    #@board[y][x] <= IMPORTANT
     @board[0][0] = Rook.create(:color => :white, :x_axis => 0, :y_axis => 0, :image => 'white-rook.gif', :game_id => self.id)
     @board[0][1] = Knight.create(:color => :white, :x_axis => 1, :y_axis => 0, :image => 'white-knight.gif', :game_id => self.id)
     @board[0][2] = Bishop.create(:color => :white, :x_axis => 2, :y_axis =>0, :image => 'white-bishop.gif', :game_id => self.id)
@@ -45,7 +45,7 @@ class Game < ActiveRecord::Base
     @board[1][5] = Pawn.create(:color => :white, :x_axis => 5, :y_axis => 1, :image => 'white-pawn.gif', :game_id => self.id)
     @board[1][6] = Pawn.create(:color => :white, :x_axis => 6, :y_axis => 1, :image => 'white-pawn.gif', :game_id => self.id)
     @board[1][7] = Pawn.create(:color => :white, :x_axis => 7, :y_axis => 1, :image => 'white-pawn.gif', :game_id => self.id)
-  
+
   # #black pieces
     @board[7][0] = Rook.create(:color => :black, :x_axis => 0, :y_axis => 7, :image => 'black-rook.gif', :game_id => self.id)
     @board[7][1] = Knight.create(:color => :black, :x_axis => 1, :y_axis => 7, :image => 'black-knight.gif', :game_id => self.id)

@@ -7,5 +7,4 @@ class Queen < Piece
     end
     return false
   end
-	
 end
