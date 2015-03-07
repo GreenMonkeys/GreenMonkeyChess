@@ -67,7 +67,6 @@ class Piece < ActiveRecord::Base
   end
 
   def distance(position_2)
-    sqrt(self.delta_y(position_2) ** 2 + self.delta_x(position_2) ** 2)
     Math.sqrt(self.delta_y(position_2) ** 2 + self.delta_x(position_2) ** 2).to_i
   end
 
