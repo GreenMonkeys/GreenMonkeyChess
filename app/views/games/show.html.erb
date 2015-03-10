@@ -10,27 +10,28 @@
 			accept: '.piece',
 			drop: function(event, ui) {
 				var piece_id = $(ui.draggable).data('id');
-				var initial_position = $(ui.draggable).data('position');
-				var new_position = $(event.target).data('position');
-				console.log(piece_id, initial_position, new_position),
-        $(this)
-					.addClass( "ui-state-highlight" )
+				var new_y = $(event.target).data('y');
+				var new_x = $(event.target).data('x');
+				console.log(piece_id, new_y, new_x),
+				$.ajax({
+					method: 'PUT',
+					url: ui.draggable.data('url'),
+					data: {piece_id: piece_id, y_axis: new_y, x_axis: new_x}
+				})
 			}
 		});
 	});
 </script>
-
-<%= @piece.inspect %>
 
 <div class = 'col-xs-10 col-xs-offset-1'>
 	<table id = 'chess'>
 		<% @board.each_index do |y| %>
 			<tr class = '<%= y %>' >
 				<% @board[y].each_index do |x| %>
-					<td class = 'square <%= x %>' data-position = '<%= [y,x] %>' >
+					<td class = 'square <%= x %>' data-y = '<%= y%>' data-x = '<%= x %>' >
 					<% if !@board[y][x].nil? %>
 						<%= image_tag @board[y][x].image, :class => 'piece responsive', :cursor => '-webkit-grab',
-						:data => { :url => game_path(@game.id), :id => @board[y][x].id, :position => [y,x] } %>
+						:data => { :url => game_path(@game.id), :id => @board[y][x].id } %>
 					<% end %>
 					</td>
 				<% end %>

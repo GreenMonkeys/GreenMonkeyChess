@@ -11,8 +11,9 @@ class GamesController < ApplicationController
 
 	def update
 		@game = Game.find(params[:id])
-		@piece = Piece.find(params[:id])
-		@piece.update_attributes(:x_axis => params[:x_axis], :y_axis => params[:y_axis])
+		@piece = Piece.find(params[:piece_id])
+		@piece.update_attributes(:y_axis => params[:y_axis], :x_axis => params[:x_axis])
+		render :nothing => true
 	end
 
 end
