@@ -20,7 +20,7 @@ class GamesControllerTest < ActionController::TestCase
 	   	board = game.board
 
 	   	get :select, :game_id => game.id, :id => board[1][0].id
-	
+
 		assert_response :success
 	end
 
@@ -30,10 +30,10 @@ class GamesControllerTest < ActionController::TestCase
 	   	board = game.board
 	   	pawn = board[1][0]
 
-	   	put :piece_update, :game_id => game.id, :id => pawn.id, :y_axis => 3, :x_axis => 0
+	   	put :piece_update, :game_id => game.id, :id => pawn.id, :y_axis => 2, :x_axis => 0
 
  		pawn_moved = Piece.find(pawn.id)
-	   	expected_coord = [3, 0]
+	   	expected_coord = [2, 0]
 	   	actual_coord = [pawn_moved.y_axis, pawn_moved.x_axis]
 
 	   	assert_equal expected_coord, actual_coord

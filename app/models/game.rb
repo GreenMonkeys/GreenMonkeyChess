@@ -6,14 +6,14 @@ class Game < ActiveRecord::Base
 
   def board
     return @board if @board.present?
-    @board =  [[nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil],
-               [nil, nil, nil, nil,nil,nil,nil,nil]]
+    @board =  [[nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil],
+               [nil, nil, nil, nil, nil, nil, nil, nil]]
 
 
   self.pieces.each do |p|

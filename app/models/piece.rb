@@ -10,25 +10,25 @@ class Piece < ActiveRecord::Base
   scope :queens, -> { where(type: 'Queen') }
   scope :pawns, -> { where(type: 'Pawn') }
 
-  def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
-	if self.valid_move?([y_axis, x_axis])
-  	if self.game.piece_at(x_axis, y_axis).nil?
-      update_attributes(:x_axis => x_axis, :y_axis => y_axis)
-      return true
-  	elsif self.color == self.game.piece_at(x_axis, y_axis).color
-      return false
-    elsif self.color != self.game.piece_at(x_axis, y_axis).color
-      capture(x_axis, y_axis)
-      return true #"For the king"
-  	end
+	def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
+		if self.valid_move?([y_axis, x_axis])
+			if self.game.piece_at(x_axis, y_axis).nil?
+				update_attributes(:x_axis => x_axis, :y_axis => y_axis)
+				return true
+			elsif self.color == self.game.piece_at(x_axis, y_axis).color
+				return false
+			elsif self.color != self.game.piece_at(x_axis, y_axis).color
+				capture(x_axis, y_axis)
+				return true #"For the king"
+			end
+		end
+		 return false
 	end
-	return false
-  end
 
   def capture(target_x_axis, target_y_axis)
-    captured = self.game.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
-    captured.update_attributes(:x_axis => nil, :y_axis => nil)
+    captured = game.piece_at(target_x_axis, target_y_axis)
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
+		captured.update_attributes(:x_axis => nil, :y_axis => nil)
   end
 
   # define some helper methods for move validation
@@ -65,6 +65,6 @@ class Piece < ActiveRecord::Base
   end
 
   def move_within_board?(position_2)
-    position_2.select{|coord| coord > 7 || coord < 0}.empty? ? true : false
+    position_2.select{|coord| coord.to_i > 7 || coord.to_i < 0}.empty? ? true : false
   end
 end
