@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  resources :games
   devise_for :users
   root 'static_pages#index'
 
-  resources :games
+  get '/games/:id', to: 'games#show'
+
 
   resources :games, :only => [:show] do
 
@@ -10,7 +12,6 @@ Rails.application.routes.draw do
     put '/select/pieces/:id/:y_axis/:x_axis', to: 'games#piece_update', as: :piece_update
 
   end
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

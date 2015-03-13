@@ -1,9 +1,25 @@
 require 'test_helper'
 
 class GamesControllerTest < ActionController::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+   #test "the truth" do
+   #  assert true
+   #end
+
+	test "index" do
+	  FactoryGirl.create(:game)
+	  get :index
+	  assert_response :success
+    end
+
+    test "create not signed in" do
+    	assert_no_difference 'Game.count' do
+    		post :create, {:game => {
+    			:name => 'tough game'
+    			}
+    		}
+    	end
+    	assert_redirected_to new_user_session_path
+    end
 
 
  	test 'show_board' do
@@ -38,5 +54,6 @@ class GamesControllerTest < ActionController::TestCase
 
 	   	assert_equal expected_coord, actual_coord
 	end
+
 
 end
