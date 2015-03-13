@@ -124,7 +124,6 @@ class Game < ActiveRecord::Base
         next if [y,x] == position_1 || [y,x] == position_2 || (diag_move && (y - begin_y).abs != (x - begin_x).abs)
         # go to next x if loop is at current or proposed position or is not along diagonal
         path << [y, x]
-        end
       end
     end
     path
