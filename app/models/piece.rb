@@ -10,22 +10,6 @@ class Piece < ActiveRecord::Base
   scope :queens, -> { where(type: 'Queen') }
   scope :pawns, -> { where(type: 'Pawn') }
 
-
-  IMAGE = {
-    'white Rook' => 'white-rook.gif',
-    'white Knight' => 'white-knight.gif',
-    'white Bishop' => 'white-bishop.gif',
-    'white King' => 'white-king.gif',
-    'white Queen' => 'white-queen.gif',
-    'white pawn' => 'white-pawn.gif',
-    'black Rook' => 'black-rook.gif',
-    'black Knight' => 'black-knight.gif',
-    'black Bishop' => 'black-bishop.gif',
-    'black King' => 'black-king.gif',
-    'black Queen' => 'black-queen.gif',
-    'black pawn' => 'black-pawn.gif',
-  }
-
   def move_to!(x_axis, y_axis)#Check methods piece_at() and capture()
 	if self.valid_move?([y_axis, x_axis])
   	if self.game.piece_at(x_axis, y_axis).nil?
@@ -47,8 +31,26 @@ class Piece < ActiveRecord::Base
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
   end
 
+  IMAGE = {
+    :whiteRook => 'white-rook.gif',
+    :whiteKnight => 'white-knight.gif',
+    :whiteBishop => 'white-bishop.gif',
+    :whiteKing => 'white-king.gif',
+    :whiteQueen => 'white-queen.gif',
+    :whitePawn => 'white-pawn.gif',
+    :blackRook => 'black-rook.gif',
+    :blackKnight => 'black-knight.gif',
+    :blackBishop => 'black-bishop.gif',
+    :blackKing => 'black-king.gif',
+    :blackQueen => 'black-queen.gif',
+    :blackPawn => 'black-pawn.gif'
+  }
+
+
   def image_select(color, type)
-    IMAGE["#{color} #{type}"]
+    IMAGE["#{color}#{type}".to_sym]
+  end
+
   # define some helper methods for move validation
   def ensure_reasonable_move!(position_2)
     raise "this move is not within the board" unless self.move_within_board?(position_2)
