@@ -100,7 +100,7 @@ class Game < ActiveRecord::Base
    self.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
   end
 
- def find_path(position_1, position_2) # check if proposed move is obstructed
+ def find_path(position_1, position_2) #find path of a potential move
     path = []
     # get begin and end coords from position
     begin_y = position_1[0]
@@ -114,7 +114,7 @@ class Game < ActiveRecord::Base
     end_y >= begin_y ? (y_range = (begin_y..end_y).to_a) : (y_range = (begin_y.downto(end_y)).to_a)
     end_x >= begin_x ? (x_range = (begin_x..end_x).to_a) : (x_range = (begin_x.downto(end_x)).to_a)
 
-    # check if proposed move is diagonal
+    # check if potential move is diagonal
     (delta_y != 0 && delta_x != 0 && delta_y.abs == delta_x.abs) ? (diag_move = true) : (diag_move = false)
 
     # loop through coords along proposed path and check if empty

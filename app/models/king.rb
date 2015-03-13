@@ -7,19 +7,12 @@ class King < Piece
 		end
 	end
 
+	opposite_color = {'black' => 'white', 'white' => 'black'}
+
 	def checked?(position)
-		case self.color
-		when "white"
-			self.game.pieces.where(:color => "black").find_each do |piece|
-				if piece.valid_move?(position)
-					return true
-				end
-			end
-		when "black"
-			self.game.pieces.where(:color => "white").find_each do |piece|
-				if piece.valid_move?(position)
-					return true
-				end
+		self.game.pieces.where(:color => opposite_color[self.color]).find_each do |piece|
+			if piece.valid_move?(position)
+				return true
 			end
 		end
 		return false
@@ -30,18 +23,9 @@ class King < Piece
 			if self.valid_move?(move)
 				if self.checked?(move)
 					self.check_piece.game.find_path(self.check_piece.current_position, self.current_position).each do |step|
-						case self.color
-						when "white"
-							self.game.pieces.where(:color => "white").find_each do |piece|
-								if piece.valid_move?(step)
-									return true
-								end
-							end
-						when "black"
-							self.game.pieces.where(:color => "black").find_each do |piece|
-								if piece.valid_move?(step)
-									return true
-								end
+						self.game.pieces.where(:color => opposite_color[self.color]).find_each do |piece|
+							if piece.valid_move?(step)
+								return true
 							end
 						end
 					end
@@ -53,6 +37,7 @@ class King < Piece
 
 	def possible_moves
 		moves = []
+		moves << [self.y_axis, self.x_axis]
 		moves << [self.y_axis, self.x_axis + 1] 
 		moves << [self.y_axis, self.x_axis - 1]
 		moves << [self.y_axis + 1, self.x_axis]
@@ -66,18 +51,9 @@ class King < Piece
 
 	def check_piece
 		if self.checked?(self.current_position)
-			case self.color
-			when "white"
-				self.game.pieces.where(:color => "black").find_each do |piece|
-					if piece.valid_move?(self.current_position)
-						piece.type
-					end
-				end
-			when "black"
-				self.game.pieces.where(:color => "white").find_each do |piece|
-					if piece.valid_move?(self.current_position)
-						piece.type
-					end
+			self.game.pieces.where(:color => opposite_color[self.color]).find_each do |piece|
+				if piece.valid_move?(self.current_position)
+					piece.type
 				end
 			end
 		end
