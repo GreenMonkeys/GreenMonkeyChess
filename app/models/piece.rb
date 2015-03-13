@@ -31,6 +31,26 @@ class Piece < ActiveRecord::Base
     update_attributes(:x_axis => target_x_axis, :y_axis => target_y_axis)
   end
 
+  IMAGE = {
+    :whiteRook => 'white-rook.gif',
+    :whiteKnight => 'white-knight.gif',
+    :whiteBishop => 'white-bishop.gif',
+    :whiteKing => 'white-king.gif',
+    :whiteQueen => 'white-queen.gif',
+    :whitePawn => 'white-pawn.gif',
+    :blackRook => 'black-rook.gif',
+    :blackKnight => 'black-knight.gif',
+    :blackBishop => 'black-bishop.gif',
+    :blackKing => 'black-king.gif',
+    :blackQueen => 'black-queen.gif',
+    :blackPawn => 'black-pawn.gif'
+  }
+
+
+  def image_select(color, type)
+    IMAGE["#{color}#{type}".to_sym]
+  end
+
   # define some helper methods for move validation
   def ensure_reasonable_move!(position_2)
     raise "this move is not within the board" unless self.move_within_board?(position_2)

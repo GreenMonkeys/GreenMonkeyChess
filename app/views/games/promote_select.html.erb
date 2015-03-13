@@ -1,4 +1,13 @@
-<div class = 'col-xs-10 col-xs-offset-1'>
+<div class = 'col-xs-2'>
+<h4>What would you like to promote your pawn to?</h4>
+	<%= link_to 'Queen', game_promote_create_path(:type => 'Queen'), :method => 'post' %>, 
+	<%= link_to 'Rook', game_promote_create_path(:type => 'Rook'), :method => 'post' %>, 
+	<%= link_to 'Bishop', game_promote_create_path(:type => 'Bishop'), :method => 'post' %>, 
+	<%= link_to 'Knight', game_promote_create_path(:type => 'Knight'), :method => 'post' %>
+</div>
+
+<div class = 'col-xs-8 col-xs-offset-1'>
+
 	<table id = 'chess'>
 		<% @board.each_index do |y| %>
 			<tr class = '<%= y %>' >
@@ -28,4 +37,3 @@
 		<% end %>
 	</table>
 </div>
-

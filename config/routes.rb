@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 
 
   resources :games, :only => [:show] do
-
     get '/select/pieces/:id', to: 'games#select', as: :piece_select
     put '/select/pieces/:id/:y_axis/:x_axis', to: 'games#piece_update', as: :piece_update
-
+    get '/select/pieces/:id/promote', to: 'games#promote_select', as: :promote_select
+    post '/select/pieces/:id/promote/:type', to: 'games#promote_create', as: :promote_create
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
