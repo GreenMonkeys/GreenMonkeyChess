@@ -22,6 +22,7 @@ class King < Piece
 				end
 			end
 		end
+		return false
 	end
 
 	def check_mate?
@@ -32,18 +33,14 @@ class King < Piece
 						case self.color
 						when "white"
 							self.game.pieces.where(:color => "white").find_each do |piece|
-								if piece.valid_move?(move)
-										if self.check_piece.game.is_obstructed?(step)
-										return true
-										end
+								if piece.valid_move?(step)
+									return true
 								end
 							end
 						when "black"
 							self.game.pieces.where(:color => "black").find_each do |piece|
-								if piece.valid_move?(move)
-										if self.check_piece.game.is_obstructed?(step)
-										return true
-										end
+								if piece.valid_move?(step)
+									return true
 								end
 							end
 						end
@@ -51,6 +48,7 @@ class King < Piece
 				end
 			end
 		end
+		return false
 	end
 
 	def possible_moves
@@ -72,13 +70,13 @@ class King < Piece
 			when "white"
 				self.game.pieces.where(:color => "black").find_each do |piece|
 					if piece.valid_move?(self.current_position)
-						piece
+						piece.type
 					end
 				end
 			when "black"
 				self.game.pieces.where(:color => "white").find_each do |piece|
 					if piece.valid_move?(self.current_position)
-						piece
+						piece.type
 					end
 				end
 			end
