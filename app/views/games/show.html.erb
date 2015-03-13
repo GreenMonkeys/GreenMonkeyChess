@@ -12,7 +12,6 @@
 				var piece_id = $(ui.draggable).data('id');
 				var new_y = $(event.target).data('y');
 				var new_x = $(event.target).data('x');
-				console.log(piece_id, new_y, new_x),
 				$.ajax({
 					method: 'PUT',
 					url: ui.draggable.data('url'),
