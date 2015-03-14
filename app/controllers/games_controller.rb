@@ -12,6 +12,7 @@ class GamesController < ApplicationController
 	    # @board = @game.populate_board
 
 	    @board = @game.board
+
 	end
 
 	def new
@@ -19,13 +20,12 @@ class GamesController < ApplicationController
 	end
 
 	def create
-	#current_user.games.create(game_params)
-	@game = Game.new(game_params)
-	@game.user_id = current_user.id
-	@game.save
-    redirect_to game_path(@game)
-    #need to redirect this to the board once it's been made
-
+		#current_user.games.create(game_params)
+		@game = Game.new(game_params)
+		@game.user_id = current_user.id
+		@game.save
+	    redirect_to game_path(@game)
+	    #need to redirect this to the board once it's been made
 	end
 
 	def update
