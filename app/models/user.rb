@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :game
   has_many :pieces
+  has_many :games
+  has_many :challenged_games, :class_name => "Game",
+    :foreign_key => 'opponent_id'
 end

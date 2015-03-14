@@ -11,7 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210174936) do
+
+ActiveRecord::Schema.define(version: 20150221163159) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150210174936) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "opponent_id"
   end
 
   add_index "games", ["user_id"], name: "index_games_on_user_id", using: :btree
@@ -34,19 +37,21 @@ ActiveRecord::Schema.define(version: 20150210174936) do
   add_index "games_users", ["users_id"], name: "index_games_users_on_users_id", using: :btree
 
   create_table "pieces", force: true do |t|
-    t.string   "name"
     t.string   "color"
     t.string   "image"
-    t.string   "position"
     t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "x_axis"
+    t.integer  "y_axis"
+    t.string   "type"
   end
 
   add_index "pieces", ["game_id"], name: "index_pieces_on_game_id", using: :btree
-  add_index "pieces", ["name"], name: "index_pieces_on_name", using: :btree
-  add_index "pieces", ["position"], name: "index_pieces_on_position", using: :btree
+  add_index "pieces", ["type"], name: "index_pieces_on_type", using: :btree
+  add_index "pieces", ["x_axis"], name: "index_pieces_on_x_axis", using: :btree
+  add_index "pieces", ["y_axis"], name: "index_pieces_on_y_axis", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
