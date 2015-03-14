@@ -1,8 +1,11 @@
 class Game < ActiveRecord::Base
- 	has_and_belongs_to_many :users
 	has_many :pieces
 
+  belongs_to :user
+  belongs_to :opponent, :class_name => "User", :foreign_key => 'opponent_id'
+  
   delegate :rooks, :knights, :bishops, :kings, :queens, :pawns, to: :pieces
+
 
   def board
     return @board if @board.present?
