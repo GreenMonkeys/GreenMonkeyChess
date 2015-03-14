@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  resources :games
+  
+  resources :games do
+    member do
+      put 'update_board'
+    end
+  end
+
   devise_for :users
   root 'static_pages#index'
 
-  get '/games/:id', to: 'games#show'
+  # put '/games/:id', to: 'games#update_board'
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

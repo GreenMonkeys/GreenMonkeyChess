@@ -14,7 +14,7 @@ class GamesController < ApplicationController
     @board = @game.board
 	end
 
-	def update
+	def update_board
 		@piece = Piece.find(params[:piece_id])
 		@piece.move_to!(params[:x_axis].to_i, params[:y_axis].to_i)
 		render :nothing => true

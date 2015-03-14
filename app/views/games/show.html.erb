@@ -30,7 +30,7 @@
 					<td class = 'square <%= x %>' data-y = '<%= y%>' data-x = '<%= x %>' >
 					<% if !@board[y][x].nil? %>
 						<%= image_tag @board[y][x].image, :class => 'piece responsive', :cursor => '-webkit-grab',
-						:data => { :url => game_path(@game.id), :id => @board[y][x].id } %>
+						:data => { :url => update_board_game_path(@game.id), :id => @board[y][x].id } %>
 					<% end %>
 					</td>
 				<% end %>

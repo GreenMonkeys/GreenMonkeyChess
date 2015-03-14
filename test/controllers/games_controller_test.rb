@@ -26,15 +26,15 @@ class GamesControllerTest < ActionController::TestCase
    	assert_response :success
 	end
 
-	test 'update' do
+	test 'update_board' do
 		game = Game.create(:user_id => 1)
    	game.populate_board
    	board = game.board
    	knight = board[0][1]
 
-   	put :update, :id => game.id, :piece_id => knight.id, :y_axis => 2, :x_axis => 2, xhr: true
+   	put :update_board, :id => game.id, :piece_id => knight.id, :y_axis => 2, :x_axis => 2, xhr: true
 
-			knight_new = Piece.find(knight.id)
+		knight_new = Piece.find(knight.id)
    	expected_coord = [2, 2]
    	actual_coord = [knight_new.y_axis, knight_new.x_axis]
 
