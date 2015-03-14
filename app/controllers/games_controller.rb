@@ -1,6 +1,5 @@
 class GamesController < ApplicationController
-
-	before_action :authenticate_user!
+	before_action :authenticate_user!, :only => [:new, :create, :delete]
 
 	def index
 		@games = Game.where(:opponent_id => nil)

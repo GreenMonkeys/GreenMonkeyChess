@@ -41,16 +41,4 @@ class GamesControllerTest < ActionController::TestCase
    	assert_equal expected_coord, actual_coord
 	end
 
-	test "no one is logged in- new" do
-		get :new
-		assert_redirected_to new_user_session_path
-	end
-
-	test "someone is logged in- new" do
-		user = FactoryGirl.create(:user)
-		sign_in user
-		get :new
-		assert_response :success
-	end
-
 end
