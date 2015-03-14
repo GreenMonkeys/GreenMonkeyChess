@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150225141255) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
     t.integer  "opponent_id"
   end
 
