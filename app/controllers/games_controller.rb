@@ -9,10 +9,15 @@ class GamesController < ApplicationController
 		@game = Game.find(params[:id])
 		
 		# used to initialize board
-	    # @board = @game.populate_board
+    # @board = @game.populate_board
 
-	    @board = @game.board
+    @board = @game.board
+	end
 
+	def update_board
+		@piece = Piece.find(params[:piece_id])
+		@piece.move_to!(params[:x_axis].to_i, params[:y_axis].to_i)
+		render :nothing => true
 	end
 
 	def new
@@ -24,8 +29,8 @@ class GamesController < ApplicationController
 		@game = Game.new(game_params)
 		@game.user_id = current_user.id
 		@game.save
-	    redirect_to game_path(@game)
-	    #need to redirect this to the board once it's been made
+    redirect_to game_path(@game)
+    #need to redirect this to the board once it's been made
 	end
 
 	def update
@@ -41,21 +46,8 @@ class GamesController < ApplicationController
 
 	def destroy
 		@game = Game.find(params[:id])
-  		@game.destroy
-  		redirect_to games_path
-	end
-
-		def select
-		@game = Game.find(params[:game_id])
-		@board = @game.board
-		@piece = Piece.find(params[:id])
-	end
-
-	def piece_update
-		@game = Game.find(params[:game_id])
-		@piece = Piece.find(params[:id])
-		@piece.update_attributes(:x_axis => params[:x_axis], :y_axis => params[:y_axis])
-		redirect_to game_path(@game)
+		@game.destroy
+		redirect_to games_path
 	end
 
 private

@@ -103,5 +103,4 @@ class Game < ActiveRecord::Base
    self.pieces.where(:x_axis => target_x_axis, :y_axis => target_y_axis).first
   end
 
-
 end

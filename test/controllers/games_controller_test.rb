@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class GamesControllerTest < ActionController::TestCase
- #  test "the truth" do
-  #   assert true
-   #end
 
 	test "no one is logged in- new" do
 		get :new
@@ -17,59 +14,43 @@ class GamesControllerTest < ActionController::TestCase
 		assert_response :success
 	end
 
-   #test "the truth" do
-   #  assert true
-   #end
-
 	test "index" do
 	  FactoryGirl.create(:game)
 	  get :index
 	  assert_response :success
-    end
+  end
 
-    test "create not signed in" do
-    	assert_no_difference 'Game.count' do
-    		post :create, {:game => {
-    			:name => 'tough game'
-    			}
-    		}
-    	end
-    	assert_redirected_to new_user_session_path
-    end
-
+  test "create not signed in" do
+  	assert_no_difference 'Game.count' do
+  		post :create, {:game => {
+  			:name => 'tough game'
+  			}
+  		}
+  	end
+  	assert_redirected_to new_user_session_path
+  end
 
  	test 'show_board' do
-	  	game = Game.create(:user_id => 1)
-	   	board = game.populate_board
+  	game = Game.create(:user_id => 1)
+   	board = game.populate_board
 
-	   	get :show, :id => game.id
-	   	assert_response :success
-  	end
-
- 	test 'select_piece' do
-	  	game = Game.create(:user_id => 1)
-	   	game.populate_board
-	   	board = game.board
-
-	   	get :select, :game_id => game.id, :id => board[1][0].id
-	
-		assert_response :success
+   	get :show, :id => game.id
+   	assert_response :success
 	end
 
-	test 'piece_update' do
+	test 'update_board' do
 		game = Game.create(:user_id => 1)
-	   	game.populate_board
-	   	board = game.board
-	   	pawn = board[1][0]
+   	game.populate_board
+   	board = game.board
+   	knight = board[0][1]
 
-	   	put :piece_update, :game_id => game.id, :id => pawn.id, :y_axis => 3, :x_axis => 0
+   	put :update_board, :id => game.id, :piece_id => knight.id, :y_axis => 2, :x_axis => 2, xhr: true
 
- 		pawn_moved = Piece.find(pawn.id)
-	   	expected_coord = [3, 0]
-	   	actual_coord = [pawn_moved.y_axis, pawn_moved.x_axis]
+		knight_new = Piece.find(knight.id)
+   	expected_coord = [2, 2]
+   	actual_coord = [knight_new.y_axis, knight_new.x_axis]
 
-	   	assert_equal expected_coord, actual_coord
+   	assert_equal expected_coord, actual_coord
 	end
-
 
 end
